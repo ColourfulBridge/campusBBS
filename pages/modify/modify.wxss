@@ -27,3 +27,14 @@
   min-height: 1.41176471em;
   line-height: 1.41176471;
 }
+
+/*分割线样式*/
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 1rpx;
+}
+
+.weui-btn {
+  margin-top: 20px;
+}

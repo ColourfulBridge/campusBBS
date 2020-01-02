@@ -1,4 +1,4 @@
-<!--pages/hot/hot.wxml-->
+<!--pages/favorite/favorite.wxml-->
 <!--搜索框-->
 <view class="page__bd">
   <view class="weui-search-bar">
