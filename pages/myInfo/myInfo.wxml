@@ -49,11 +49,7 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">手机号</view>
-<<<<<<< Updated upstream
-    <view class="weui-cell__ft">手机号</view>
-=======
     <view class="weui-cell__ft">{{tel}}</view>
->>>>>>> Stashed changes
   </view>
 </view>
 <view class="divLine"></view>

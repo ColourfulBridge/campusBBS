@@ -4,12 +4,8 @@
     "pages/hot/hot",
     "pages/post/post",
     "pages/myInfo/myInfo",
-<<<<<<< Updated upstream
     "pages/modify/modify",
     "pages/favorite/favorite"
-=======
-    "pages/modify/modify"
->>>>>>> Stashed changes
   ],
   "window": {
     "backgroundTextStyle": "light",
