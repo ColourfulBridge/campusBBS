@@ -1,0 +1,62 @@
+/* pages/myInfo/myInfo.wxss */
+.weui-cells {
+  position: relative;
+  margin-top: 8px;
+  background-color: #fff;
+  line-height: 1.41176471;
+  font-size: 17px;
+}
+
+.weui-cells_after-title {
+  margin-top: 0;
+}
+
+.weui-cell {
+  padding: 10px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.weui-cell__bd {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+.weui-cell__bd1 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  font-size: 13px;
+}
+
+.weui-cell__ft {
+  text-align: right;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/*分割线样式*/
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 1rpx;
+}
+
+.weui-cell_access {
+  color: inherit;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.weui-cell_active {
+  background-color: #ececec;
+}
+
+.weui-cell__ft_in-access {
+  padding-right: 16px;
+  position: relative;
+}
+

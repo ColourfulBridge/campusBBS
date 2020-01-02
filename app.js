@@ -7,11 +7,58 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 登录
+    
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+    
+    /*
+    wx.login({
+      success: res => {
+        console.log('res', res)
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: 'https://zjgsujiaoxue.applinzi.com/index.php/Api/Weixin/code_to_openidv2',
+          data: {
+            'code': res.code,
+            'from': 'wxdd563ad440e34034'
+          },
+          success: function (res) {
+            console.log(res.data)
+            //将SESSIONID保存到本地storage
+            wx.setStorageSync('jiaoxue_OPENID', res.data.openid)
+            wx.request({
+              url: 'https://zjgsujiaoxue.applinzi.com/index.php/Api/User/getInfo',
+              data: {
+                'openid': res.data.openid,
+              },
+              success: function (res1) {
+                wx.setStorageSync('userInfo', res1.data.data)
+              },
+            })
+            if (!res.data.is_register) {
+              wx.showModal({
+                title: '提示',
+                content: '请先注册',
+                showCancel: false,
+                confirmText: "确定",
+                success: function (res) {
+                  wx.navigateTo({
+                    url: '/pages/hot/hot',
+                  })
+                }
+              })
+            }
+          },
+          fail: function (res) {
+            console.log('res' + res)
+          }
+        })
+      }
+    })
+    */
     // 获取用户信息
     wx.getSetting({
       success: res => {

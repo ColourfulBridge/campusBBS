@@ -1,13 +1,42 @@
 {
+  "cloud": true,
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/hot/hot",
+    "pages/post/post",
+    "pages/myInfo/myInfo",
+    "pages/Modify/modify"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarBackgroundColor": "#abc",
+    "navigationBarTitleText": "热门",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#abc",
+    "list": [
+      {
+        "pagePath": "pages/hot/hot",
+        "text": "热门",
+        "iconPath": "images/remen_off.png",
+        "selectedIconPath": "images/remen_on.png",
+        "backgroundColor": "#abc"
+      },
+      {
+        "pagePath": "pages/post/post",
+        "text": "发帖",
+        "iconPath": "images/fatie_off.png",
+        "selectedIconPath": "images/fatie_on.png",
+        "backgroundColor": "#abc"
+      },
+      {
+        "pagePath": "pages/myInfo/myInfo",
+        "text": "我的",
+        "iconPath": "images/wode_off.png",
+        "selectedIconPath": "images/wode_on.png",
+        "backgroundColor": "#abc"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

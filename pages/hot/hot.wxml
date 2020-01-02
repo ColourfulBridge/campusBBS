@@ -1,0 +1,67 @@
+<!--pages/hot/hot.wxml-->
+<!--搜索框-->
+<view class="page__bd">
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+        <!--       <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+          <icon type="clear" size="14"></icon>
+        </view>   -->
+      </view>
+      <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+        <icon class="weui-icon-search" type="search" size="14"></icon>
+        <view class="weui-search-bar__text">搜索</view>
+      </label>
+    </view>
+    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+  </view>
+  <!--
+  <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}"> </view>
+  -->
+</view>
+
+<!--类似于首页以及发现页这种标准列表式的数据展现方式, 微信提供了很好的方案---列表渲染 
+可以直观的看出, 就是 for 循环来用重复的结构渲染一组数据
+
+for="{{}}"中的内容是想要循环的一组数据, 最外层为数组结构
+for-item 指定数组中当前元素的变量名
+for-index 指定数组中当前元素下标变量名
+-->
+<block wx:for="{{feed}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+  <view class="feed-item">
+    <view class="feed-source">
+      <a class="">
+        <view class="avatar">
+          <image src="{{item.feed_source_img}}"></image>
+        </view>
+        <text>{{item.feed_source_name}}{{item.feed_source_txt}}</text>
+      </a>
+      <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+    </view>
+    <view class="feed-content">
+      <view class="question" qid="{{question_id}}" bindtap="bindQueTap">
+        <a class="question-link">
+          <text>{{item.question}}</text>
+        </a>
+      </view>
+      <view class="answer-body">
+        <view bindtap="bindItemTap">
+          <text class="answer-txt" aid="{{answer_id}}">{{item.answer_ctnt}}</text>
+        </view>
+        <view class="answer-actions" bindtap="bindItemTap">
+          <view class="like dot">
+            <a>{{item.good_num}} 赞同 </a>
+          </view>
+          <view class="comments dot">
+            <a>{{item.comment_num}} 评论 </a>
+          </view>
+          <view class="follow-it">
+            <a>关注问题</a>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
