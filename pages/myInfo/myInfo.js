@@ -5,7 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    name:"未设置",
+    num:"未设置",
+    academy:"未设置",
+    major:"未设置",
+    tel: "未设置",
   },
 
   /**
@@ -64,5 +68,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
 })

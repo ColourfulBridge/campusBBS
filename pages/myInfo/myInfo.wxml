@@ -15,7 +15,7 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">姓名</view>
-    <view class="weui-cell__ft">未设置</view>
+    <view class="weui-cell__ft">{{name}}</view>
   </view>
 </view>
 
@@ -23,7 +23,7 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">学号</view>
-    <view class="weui-cell__ft">未设置</view>
+    <view class="weui-cell__ft">{{num}}</view>
   </view>
 </view>
 <view class="divLine"></view>
@@ -32,7 +32,7 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">学院</view>
-    <view class="weui-cell__ft">未设置</view>
+    <view class="weui-cell__ft">{{academy}}</view>
   </view>
 </view>
 <view class="divLine"></view>
@@ -41,7 +41,7 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">专业</view>
-    <view class="weui-cell__ft">未设置</view>
+    <view class="weui-cell__ft">{{major}}</view>
   </view>
 </view>
 <view class="divLine"></view>
@@ -49,7 +49,11 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">手机号</view>
+<<<<<<< Updated upstream
     <view class="weui-cell__ft">手机号</view>
+=======
+    <view class="weui-cell__ft">{{tel}}</view>
+>>>>>>> Stashed changes
   </view>
 </view>
 <view class="divLine"></view>

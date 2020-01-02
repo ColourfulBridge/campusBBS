@@ -2,15 +2,28 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">
+<<<<<<< Updated upstream
       <textarea class="weui-textarea" placeholder="请输入文本" style="height:9em" maxlength="200" />
       <view class="weui-textarea-counter">0/200</view>
+=======
+      <textarea class="weui-textarea" placeholder="请输入文本" style="height:9em" maxlength="200" auto-focus bindinput="userInput"/>
+      <view class="weui-textarea-counter">{{length}}/200</view>
+>>>>>>> Stashed changes
     </view>
   </view>
 </view>
 
+<<<<<<< Updated upstream
 <button bindtap="" class="weui-btn" type="default" size="mini">
   <image src='/images/fasong.png' style="margin-button:4px;margin-left:4px;vertical-align: middle;width:40px; height: 40px;"></image>
 </button>
+=======
+<button bindtap="commitPost" class="weui-btn" type="default" size="mini"><image src='/images/fasong.png' style="margin-button:4px;margin-left:4px;vertical-align: middle;width:40px; height: 40px;"></image></button>
+
+ <!-- <button class="weui-btn" type="primary">发送</button> -->
+
+<!--  <image src='/images/send.png' style="margin-top: 8px;margin-left:80%;vertical-align: middle;width:40px; height: 40px;"></image>  -->
+>>>>>>> Stashed changes
 
 <!-- <button class="weui-btn" type="primary">发送</button> -->
 
