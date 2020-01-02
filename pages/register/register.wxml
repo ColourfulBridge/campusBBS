@@ -1,0 +1,8 @@
+<view>
+<i-input  bind:change='inputName' maxlength="15" title="账号" autofocus placeholder="请输入账号" />
+<i-input  bind:change='inputPassword' maxlength="15" title="密码" autofocus placeholder="请输入密码" />
+<i-input maxlength="15" title="学号" autofocus placeholder="请输入学号" />
+<i-input maxlength="15" title="学院" autofocus placeholder="请输入学院" />
+<i-input maxlength="11" title="手机号" autofocus placeholder="请输入手机号" />
+<i-button bindtap='register' type="success">注册</i-button>
+</view>

@@ -1,0 +1,6 @@
+<input placeholder="请输入姓名" bindinput="inputName"></input>
+<input placeholder="请输入年龄" bindinput="inputAge"></input>
+<button bindtap="addData" type="primary">提交数据</button>
+<button bindtap="getData" type="primary">查询数据</button>
+<input placeholder="请输入要删除的id" bindinput="delinput"></input>
+<button bindtap="delData" type="primary">删除数据</button>
