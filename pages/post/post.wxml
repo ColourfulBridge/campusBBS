@@ -8,4 +8,4 @@
   </view>
 </view>
 
-<button bindtap="commitPost" class="weui-btn" type="default" size="mini"><image src='/images/fasong.png' style="margin-button:4px;margin-left:4px;vertical-align: middle;width:40px; height: 40px;"></image></button>
+<button bindtap="commitPost" class="weui-btn" type="default" size="mini"><image src='/images/fasong.png' style="margin-button:4px;margin-left:4px;vertical-align: middle;width:40px; height: 40px;"></image>发送</button>

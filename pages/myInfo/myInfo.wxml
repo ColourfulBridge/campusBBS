@@ -9,9 +9,18 @@
     <open-data type="userNickName" class="username"></open-data>
   </view>
 </view>
-<view class="divLine"></view>
 
 <view class="divLine"></view>
+<view class="divLine"></view>
+
+<view class="info"> 
+
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <view class="weui-cell__bd grxx">个人信息</view>
+  </view>
+</view>
+
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">姓名</view>
@@ -52,6 +61,9 @@
     <view class="weui-cell__ft">{{tel}}</view>
   </view>
 </view>
+
+</view>
+
 <view class="divLine"></view>
 <view class="divLine"></view>
 
@@ -77,5 +89,13 @@
     <view class="weui-cell__bd">收藏</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
+</view>
+<view class="divLine"></view>
+
+<view class="divLine"></view>
+<view class="weui-cells weui-cells_after-title">
+    <navigator>
+      <view class="weui-cell__bd qhzh">切换账号</view>
+    </navigator>
 </view>
 <view class="divLine"></view>

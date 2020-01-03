@@ -22,7 +22,7 @@
     <view class="weui-label">学院</view>
   </view>
   <view class="weui-cell__bd">
-    <input class="weui-input" placeholder="请输入学号" />
+    <input class="weui-input" placeholder="请输入学院" />
   </view>
 </view>
 
@@ -31,7 +31,7 @@
     <view class="weui-label">专业</view>
   </view>
   <view class="weui-cell__bd">
-    <input class="weui-input" placeholder="请输入学号" />
+    <input class="weui-input" placeholder="请输入专业" />
   </view>
 </view>
 

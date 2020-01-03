@@ -1,7 +1,7 @@
 // pages/post/post.js
 //在数据库中建User、Post、Comment、Collect集合
 wx.cloud.init({
-  env: 'zhangqi-hbcxk'
+  env: 'citbbs-zrpck'
 })
 const DB = wx.cloud.database()
 const posts = DB.collection('Post')
@@ -87,6 +87,7 @@ Page({
     var that = this;
     if (that.data.length <= 0) {
       wx.showToast({
+        image:"../../images/post_fail.ico",
         title: '提交失败',
       })
     } else {
@@ -110,7 +111,8 @@ Page({
       })
 
       this.setData({
-        content: ""
+        content: "", 
+        length:0,//此处修复了发送贴子之后仍显显示长度问题
       }),
 
         wx.showToast({
