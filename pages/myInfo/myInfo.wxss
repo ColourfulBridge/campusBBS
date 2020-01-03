@@ -60,3 +60,7 @@
   position: relative;
 }
 
+.userimage{
+  width:50px;
+  height: 50px;
+}

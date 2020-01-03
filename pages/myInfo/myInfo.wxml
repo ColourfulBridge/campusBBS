@@ -3,10 +3,10 @@
   <view class="weui-cell weui-cell_example ">
     <view class="weui-cell__hd">
       <!--src={{icon}}-->
-      <image src='/images/touxiang_off.png' style="margin-right: 16px;vertical-align: middle;width:40px; height: 40px;"></image>
     </view>
+    <open-data type="userAvatarUrl" class="userimage"></open-data>
     <view class="weui-cell__bd1" >微信号</view>
-    <view class="weui-cell__ft">昵称</view>
+    <open-data type="userNickName" class="username"></open-data>
   </view>
 </view>
 <view class="divLine"></view>

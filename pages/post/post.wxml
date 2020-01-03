@@ -2,7 +2,7 @@
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell">
     <view class="weui-cell__bd">
-      <textarea class="weui-textarea" placeholder="请输入文本" style="height:9em" maxlength="200" auto-focus bindinput="userInput"/>
+      <textarea class="weui-textarea" placeholder="请输入文本" style="height:9em" maxlength="200" auto-focus bindinput="userInput" controlled="{{true}}" value="{{content}}" open-type="getUserInfo"/>
       <view class="weui-textarea-counter">{{length}}/200</view>
     </view>
   </view>
