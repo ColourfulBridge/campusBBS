@@ -56,16 +56,25 @@
 <view class="divLine"></view>
 
 <view class="weui-cells weui-cells_after-title">
-  <navigator url="/pages/favorite/favorite" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">收藏</view>
+  <navigator url="/pages/modify/modify" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__bd">编辑资料</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
 </view>
 <view class="divLine"></view>
 
 <view class="weui-cells weui-cells_after-title">
-  <navigator url="/pages/modify/modify" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-    <view class="weui-cell__bd">编辑资料</view>
+  <navigator url="/pages/record/record" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__bd">发帖记录</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+</view>
+<view class="divLine"></view>
+<view class="divLine"></view>
+
+<view class="weui-cells weui-cells_after-title">
+  <navigator url="/pages/favorite/favorite" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <view class="weui-cell__bd">收藏</view>
     <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
 </view>

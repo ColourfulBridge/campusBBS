@@ -5,7 +5,8 @@
     "pages/post/post",
     "pages/myInfo/myInfo",
     "pages/modify/modify",
-    "pages/favorite/favorite"
+    "pages/favorite/favorite",
+    "pages/record/record"
   ],
   "window": {
     "backgroundTextStyle": "light",
