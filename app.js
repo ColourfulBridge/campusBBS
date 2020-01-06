@@ -11,26 +11,26 @@ App({
 
     // 登录
     
-    wx.login({
-      //获取code
-      success: function (res) {
-        var code = res.code; //返回code
-        console.log(code);
-        var appId = '...';
-        var secret = '...';
-        wx.request({
-          url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appId + '&secret=' + secret + '&js_code=' + code + '&grant_type=authorization_code',
-          data: {},
-          header: {
-            'content-type': 'json'
-          },
-          success: function (res) {
-            var openid = res.data.openid //返回openid
-            console.log('openid为' + openid);
-          }
-        })
-      }
-    })
+    // wx.login({
+    //   //获取code
+    //   success: function (res) {
+    //     var code = res.code; //返回code
+    //     console.log(code);
+    //     var appId = '...';
+    //     var secret = '...';
+    //     wx.request({
+    //       url: 'https://api.weixin.qq.com/sns/jscode2session?appid=' + appId + '&secret=' + secret + '&js_code=' + code + '&grant_type=authorization_code',
+    //       data: {},
+    //       header: {
+    //         'content-type': 'json'
+    //       },
+    //       success: function (res) {
+    //         var openid = res.data.openid //返回openid
+    //         console.log('openid为' + openid);
+    //       }
+    //     })
+    //   }
+    // })
     
     /*
     wx.login({

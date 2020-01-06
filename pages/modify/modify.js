@@ -98,6 +98,7 @@ Page({
 
       DB.doc(openId).update({
         data:{
+
           name:name,
           number:sno,
           academy:academy,
@@ -134,6 +135,7 @@ Page({
     }
 
     else{
+      console.log(this.data.openId)
       console.log("信息有空部分，请注意！")
       wx.showToast({
         title: '信息不能为空',
@@ -148,15 +150,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.callFunction({
-      name: 'getOpenId',
-      complete: res => {
-        this.globalData.openid = res.result.openid,
-          console.log('callFunction test result: ', this.globalData.openid)
-      }
-    })
 
-    console.log(openId)
+
+    // console.log(openId)
   },
 
   /**
