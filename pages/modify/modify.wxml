@@ -4,7 +4,7 @@
     <view class="weui-label">姓名</view>
   </view>
   <view class="weui-cell__bd">
-    <input class="weui-input" placeholder="请输入姓名" />
+    <input class="weui-input" bindinput="updname" placeholder="请输入姓名" />
   </view>
 </view>
 
@@ -13,7 +13,7 @@
     <view class="weui-label">学号</view>
   </view>
   <view class="weui-cell__bd">
-    <input class="weui-input" placeholder="请输入手机号" />
+    <input class="weui-input" bindinput="updsno" placeholder="请输入学号" />
   </view>
 </view>
 
@@ -22,7 +22,13 @@
     <view class="weui-label">学院</view>
   </view>
   <view class="weui-cell__bd">
-    <input class="weui-input" placeholder="请输入学院" />
+    <!-- <input class="weui-input" bindinput="updacademy" placeholder="请输入学院" /> -->
+    <picker bindchange="bindAcademyChange" value="{{index}}" range="{{academyArray}}">
+      <view class="picker">
+        {{academyArray[index]}}
+      </view>
+    </picker>
+     
   </view>
 </view>
 
@@ -31,10 +37,14 @@
     <view class="weui-label">专业</view>
   </view>
   <view class="weui-cell__bd">
-    <input class="weui-input" placeholder="请输入专业" />
+    <picker bindchange="bindMajorChange" value="{{index1}}" range="{{majorArray[index]}}">
+      <view class="picker">
+        {{majorArray[index][index1]}}
+      </view>
+    </picker>
   </view>
 </view>
 
 <view class="divLine"></view>
 
-<button class="weui-btn" type="primary">提交</button>
+<button class="weui-btn" type="primary" bindtap="modifyInfo">提交</button>

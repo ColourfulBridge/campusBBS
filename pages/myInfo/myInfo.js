@@ -1,4 +1,6 @@
 // pages/myInfo/myInfo.js
+const DB = wx.cloud.database().collection("User")
+let uid = ""
 Page({
 
   /**
@@ -10,8 +12,19 @@ Page({
     academy:"未设置",
     major:"未设置",
     tel: "未设置",
+    authState:"未认证"
   },
-  
+  getOpenId(){
+    wx.cloud.callFunction({
+      uid:"getOpenId",
+      success(res){
+        console.log("OpenID获取成功",res)
+      },
+      fail(res){
+        console.log("OpenID获取失败",res)
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -19,6 +32,11 @@ Page({
     wx.navigateTo({
       url: 'pages/modify/modify'
     })
+    
+    //获取当前用户的openID
+    this.getPageId()
+
+
   },
 
   /**

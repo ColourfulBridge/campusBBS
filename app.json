@@ -1,9 +1,10 @@
 {
   "cloud": true,
   "pages": [
+    "pages/myInfo/myInfo",
     "pages/hot/hot",
     "pages/post/post",
-    "pages/myInfo/myInfo",
+    
     "pages/modify/modify",
     "pages/favorite/favorite",
     "pages/record/record"
