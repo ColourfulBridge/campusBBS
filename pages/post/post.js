@@ -17,11 +17,11 @@ Page({
     files: [],
     kind: '论坛',
     items: [
-      { name: '论坛', value: 0, checked: 'true' },
-      { name: '求助', value: 1 },
-      { name: '拼单', value: 2 },
-      { name: '二手转卖', value: 3 },
-      { name: '公示墙', value: 4 },
+      { name: '论坛', value: '论坛' , checked: 'true' },
+      { name: '求助', value: '求助'},
+      { name: '拼单', value: '拼单' },
+      { name: '二手转卖', value: '二手转卖' },
+      { name: '公示墙', value:'公示墙' },
     ]
   }, //sc修改了items.name,radioChange中e.detail.value：lunTan => 论坛
   
@@ -154,7 +154,7 @@ Page({
           that.data.content = '';
           that.data.images = [];
           that.data.title = '';
-          that.data.kind = 0;
+          that.data.kind = '论坛';
           that.data.length_content = 0;
           that.data.length_title = 0;
 
