@@ -1,0 +1,103 @@
+<!--pages/hot/hot.wxml-->
+
+<!--搜索框-->
+<view class="weui-search-bar">
+  <view class="weui-search-bar__form">
+    <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
+      </view>
+      <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+        <icon type="clear" size="14"></icon>
+      </view>
+    </view>
+    <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+      <icon class="weui-icon-search" type="search" size="14"></icon>
+      <view class="weui-search-bar__text">搜索</view>
+    </label>
+  </view>
+  <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">确定</view>
+</view>
+
+  <!-----------------------------------页面内容-------------------------------------------------->
+  <!-- 帖子展示 -->
+  <view>
+    <block wx:for="{{feed}}" wx:for-index="index" wx:for-item="item" wx:key="_id">
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <image bindtap="userInfo" data-openid="{{item._openid}}" data-head="{{item.post_headUrl}}" data-nickname="{{item.post_name}}" class="userimage" lazy-load="true" src="{{item.post_headUrl}}" style="margin-right: 10px;vertical-align: left;width:35px; height: 35px;"></image>
+        </view>
+        <view class="height">
+          <text class="post_name">{{item.post_name}}</text>
+          <text class="post_date">\n{{item.post_date}}</text>
+        </view>
+      </view>
+
+      <!-- <view class="question {{item.isFold?'hide':'show'}}"> -->
+      <view class="question">
+        <text class="_text" selectable="true">{{item.title}}</text>
+      </view>
+      <view class="post_content">
+        <text class="_text" selectable="true">{{item.post}}</text>
+      </view>
+      <!-- <image class="post_image" bindtap="postImage" src="/images/新建文件夹/remen_on.png" style="margin-left:10px;vertical-align: left;width:120px;height:120px;"></image> -->
+       <view wx:if="{{item.images.length > 0}}">
+        <block wx:for="{{item.images}}" wx:for-index="idx" wx:key="_id">
+          <image class='image-content' src="{{item.tempFilePath || item}}"  mode='scallToFill' data-index='{{idx}}' ></image>
+        </block>
+      </view>
+      <!-->
+      <image class="arrow" src=" {{item.isFold?'../../images/down.png':'../../images/up.png'}}" bindtap="showAll" data-index="{{index}}"></image> -->
+
+      <!-- 点赞 收藏 评论 -->
+      <view>
+        <image lazy-load="true" hidden="{{item.isGood}}" class="icon_img1" src="https://ae01.alicdn.com/kf/H78a6ccf1bc7a48e9a5ef7cbce921f1dcQ.png" bindtap="goodComment" id="index" data-id='{{item._id}}' data-index="{{index}}"></image>
+        <image lazy-load="true" hidden="{{!item.isGood}}" class="icon_img1" src="https://ae01.alicdn.com/kf/H2a8685db2d6347e7802d32e6d3934c36U.png" bindtap="goodComment" data-id='{{item._id}}' data-index="{{index}}"></image>
+        <text class="text">{{item.good_counts}}</text>
+
+        <image lazy-load="true" hidden="{{item.isStore}}" class="icon_img" src="https://ae01.alicdn.com/kf/H3cc5186b6fa94a2e938ce5257d7009547.png" bindtap="store" data-id='{{item._id}}' data-index="{{index}}"></image>
+        <image lazy-load="true" hidden="{{!item.isStore}}" class="icon_img" src="https://ae01.alicdn.com/kf/Hbf7ba709c5d9435ea4ce1ab9798f0f89D.png" bindtap="store" data-id='{{item._id}}' data-index="{{index}}"></image>
+
+        <text class="text">{{item.collect_counts}}</text>
+
+        <image lazy-load="true" class="icon_img" src="https://ae01.alicdn.com/kf/H9bb5c93470464ebdbaab74da53070f91Y.png" bindtap="comment"></image>
+        <text class="text">{{item.comment_counts}}</text>
+        <view class="divLine1"> </view>
+      </view>
+      <view class="divLine1"> </view>
+
+      <!-- 评论展示 -->
+      <view>
+        <view class="chide {{item.isShow?'cshow':''}}">
+          <block wx:for="{{item.commentFeed}}" wx:for-index="c_index" wx:for-item="c_item" wx:key="_id">
+            <view class="answer">
+              <image bindtap="userInfo" data-openid="{{item._openid}}" data-head="{{item.post_headUrl}}" data-nickname="{{item.post_name}}" class="comment_head" src="{{c_item.comment_headUrl}}" style="margin-right: 7px;vertical-align: left;width:20px; height: 20px;"></image>
+              <text class="comment_name">{{c_item.comment_name}}</text>
+              <image lazy-load="true" hidden="{{c_item.isGood}}" class="good_img" src="https://ae01.alicdn.com/kf/H78a6ccf1bc7a48e9a5ef7cbce921f1dcQ.png" bindtap="cGoodComment" data-id='{{item._id}}' data-index='{{index}}' data-cid='{{c_item._id}}' data-cindex='{{c_index}}'></image>
+              <image lazy-load="true" hidden="{{!c_item.isGood}}" class="good_img" src="https://ae01.alicdn.com/kf/H2a8685db2d6347e7802d32e6d3934c36U.png" bindtap="cGoodComment" data-id='{{item._id}}' data-index="{{index}}" data-cid='{{c_item._id}}' data-cindex='{{c_index}}'></image>
+              <text class="comment_good_count">{{c_item.comment_goods_count}}</text>
+              <view>
+                <text class="_text" selectable="true">{{c_item.comment}}</text>
+                <text class="comment_date">\n{{c_item.comment_date}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+        <image class="arrow" src=" {{item.isShow?'../../images/up.png':'../../images/down.png'}}" bindtap="cshowAll" data-index="{{index}}"></image>
+        <text class="showtip">全部评论</text>
+      </view>
+
+      <!--更新评论框---->
+      <view class="weui-comment-bar">
+        <view class="weui-comment-bar__form">
+          <view class="weui-comment-bar__box">
+            <input type="text" class="weui-comment-bar__input" placeholder="评论" value="{{item.commentText}}" bindinput="inputComment" data-id='{{item._id}}' data-index="{{index}}" maxlength="50" />
+          </view>
+        </view>
+        <view class="weui-comment-bar__cancel-btn" bindtap="commitComment" data-id='{{item._id}}' data-index="{{index}}">确定</view>
+      </view>
+      <view class="divLine"> </view>
+    </block>
+  </view>

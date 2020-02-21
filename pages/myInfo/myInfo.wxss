@@ -1,0 +1,117 @@
+/* pages/myInfo/myInfo.wxss */
+.weui-cells {
+  position: relative;
+  margin-top: 8px;
+  background-color: #fff;
+  line-height: 1.41176471;
+  font-size: 17px;
+}
+
+.weui-cells_after-title {
+  margin-top: 0;  
+}
+
+.weui-cell {
+  padding: 10px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.weui-cell__bd {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+.weui-cell__bd1 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  font-size: 16px;
+}
+
+.weui-cell__ft {
+  text-align: left;
+  color: rgba(0, 0, 0, 0.5);
+  margin-right: 10px;
+}
+
+/*分割线样式*/
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 1rpx;
+}
+
+.weui-cell_access {
+  color: inherit;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.weui-cell_active {
+  background-color: #ececec;
+}
+
+.weui-cell__ft_in-access {
+  padding-right: 16px;
+  position: relative;
+}
+
+.userimage{
+  width:50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  margin-right: 10px;
+}
+
+.grxx{
+  color: grey;
+  font-size: 14px;
+}
+
+.qhzh{
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  background-color: #f00;
+}
+
+.weui-btn {
+  margin-top: 15px;
+  border-color: #fff;
+  border: none;
+  border-radius: 50px;
+}
+
+
+.openContact{
+  margin-top: 15px;
+  border-color: #fff;
+  border: none;
+  border-radius: 50px;
+}
+
+.img{
+  margin-right: 10px;
+ /* margin-left: 28px;*/
+}
+
+.item{
+  font-size: 17px;
+}
+.content{
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 50px;
+}
+
+.style{
+  margin-left: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px; 
+}

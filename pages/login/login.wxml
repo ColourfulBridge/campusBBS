@@ -1,0 +1,37 @@
+<!--pages/login/login.wxml-->
+<!-- 小程序背景图 -->
+<view class="content">
+  <view class="topInfo">
+    <!-- 头像 -->
+    <view style='margin:10rpx auto;text-align:center'>
+      <open-data class="open-data-userAvatarUrl" type="userAvatarUrl"></open-data>
+    </view>
+    <!-- 昵称 -->
+    <view style='margin:40rpx auto;text-align:center;display:flex;justify-content: center;'>
+      <open-data class="open-data-userNickName line1" type="userNickName" lang="zh_CN"></open-data>
+    </view>
+  </view>
+
+  <view class="myno">
+    <!-- 学号 -->
+    <view class="weui-cell weui-cell_input">
+      <image class="nameImage" src="/images/name.png"></image>
+      <view class="weui-cell__bd">
+        <input class="weui-input" name="no" bindinput="noinput" value='{{no}}' placeholder="请输入学号" type="number" maxlength="8" onkeyup="this.value=this.value.replace(/^ +| +$/g,'')"/>
+      </view>
+    </view>
+  </view>
+
+  <view class="mypwd">
+    <!-- 密码 -->
+    <view class="weui-cell weui-cell_input">
+      <image class="nameImage" src="/images/key.png"></image>
+      <view class="weui-cell__bd">
+        <input class="weui-input" type="password" name="pwd" bindinput="pwdinput" placeholder="请输入密码" value='{{pwd}}' />
+      </view>
+    </view>
+  </view>
+  <text bindtap="bindModify" class="myregister" style="color:#ffffff">注册</text>
+  <text class="myhelp" style="color:#ffffff">游客</text>
+  <button class="mybtn" type="primary" disabled='{{disabled}}' bindtap="bindLogin">登录</button>
+</view>

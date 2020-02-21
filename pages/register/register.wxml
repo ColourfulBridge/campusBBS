@@ -1,0 +1,33 @@
+<!--pages/register/register.wxml-->
+
+<view class="weui-cell ">
+  <view class="weui-cell__hd">
+    <view class="weui-label">学号</view>
+  </view>
+  <view class="weui-cell__bd">
+    <input class="weui-input" bindchange="numberInput" placeholder="请输入学号" type="number"/>
+  </view>
+</view>
+
+<view class="weui-cell ">
+  <view class="weui-cell__hd">
+    <view class="weui-label">设置密码</view>
+  </view>
+  <view class="weui-cell__bd">
+    <input class="weui-input"  bindchange="passwordBeforeInput" placeholder="请输入注册密码" password="true"/>
+  </view>
+</view>
+
+<view class="weui-cell ">
+  <view class="weui-cell__hd">
+    <view class="weui-label">重复密码</view>
+  </view>
+  <view class="weui-cell__bd">
+    <input class="weui-input"  bindchange="passwordAfterInput" placeholder="请输入重复密码" password="true" />
+  </view>
+</view>
+
+<view class="divLine"></view>
+
+<button class="weui-btn" type="primary" bindtap="registerInfo">注册</button>
+

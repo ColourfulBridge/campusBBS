@@ -1,0 +1,17 @@
+/* pages/register/register.wxss */
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 1rpx;
+}
+
+.weui-btn {
+  margin-top: 10%;
+  border-radius: 20px;
+}
+
+.weui-input {
+  height: 1.41176471em;
+  min-height: 1.41176471em;
+  line-height: 1.41176471;
+}

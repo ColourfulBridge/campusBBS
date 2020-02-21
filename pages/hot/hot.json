@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "社区",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "backgroundColor": "green",
+  "onReachBottomDistance":5,
+  "usingComponents": {
+    "Tabs":"../../components/Tabs/Tabs"
+}
+}

@@ -1,0 +1,31 @@
+/* pages/userInfo/userInfo.wxss */
+page {
+  height: 30px; 
+  background-color: rgba(72, 201, 233, 0.253); 
+}
+
+.userAvatarUrl {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+  margin: 0rpx auto;
+/*  margin-left: 40%;*/
+  margin-top: 40rpx;
+}
+
+.sixin_img{
+  width: 40px;
+  height: 40px;
+  margin-left: 75%;
+}
+
+.img{
+  padding: 16px;
+}
+
+.content{
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 50px;
+}

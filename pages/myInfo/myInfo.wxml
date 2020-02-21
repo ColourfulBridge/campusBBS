@@ -1,0 +1,106 @@
+<!--src=pages/myInfo/myInfo.wxml-->
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell weui-cell_example ">
+    <view class="weui-cell__hd">
+      <!--src={{icon}}-->
+    </view>
+    <open-data type="userAvatarUrl" class="userimage"></open-data>
+    <view class="weui-cell__bd1"></view>
+    <!--微信号-->
+    <open-data type="userNickName" class="username"></open-data>
+  </view>
+</view>
+<view class="divLine"></view>
+
+<modal title="关于隐藏开关" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" bindconfirm="modalChange" bindcancel="modalChange">
+ 关闭页面某信息对应的开关，该信息会对其他用户隐藏
+</modal>
+
+
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <image class="img" src="/images/xingming.png" style="vertical-align: middle;width:25px; height: 25px;"></image>
+    <view class="weui-cell__bd">姓名</view>
+    <view class="weui-cell__ft">{{myinfo.name}}</view>
+    <switch style="transform:scale(0.8);" checked='{{switchName}}' bindchange='switchChangeName' />
+  </view>
+</view>
+<view class="divLine"></view>
+
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <image class="img" src="/images/xuehao.png" style="vertical-align: middle;width:25px; height: 25px;"></image>
+    <view class="weui-cell__bd">学号</view>
+    <view class="weui-cell__ft">{{myinfo.number}}</view>
+    <switch style="transform:scale(0.8);"  checked='{{switchNumber}}' bindchange='switchChangeNumber' />
+  </view>
+</view>
+<view class="divLine"></view>
+
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <image class="img" src="/images/xingbie.png" style="vertical-align: middle;width:25px; height: 25px;"></image>
+    <view class="weui-cell__bd">性别</view>
+    <view class="weui-cell__ft">{{myinfo.sex}}</view>
+    <switch style="transform:scale(0.8);"  checked='{{switchSex}}' bindchange='switchChangeSex' />
+  </view>
+</view>
+<view class="divLine"></view>
+
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <image class="img" src="/images/xueyuan.png" style="vertical-align: middle;width:25px; height: 25px;"></image>
+    <view class="weui-cell__bd">学院</view>
+    <view class="weui-cell__ft">{{myinfo.academy}}</view>
+    <switch style="transform:scale(0.8);"  checked='{{switchAcademy}}' bindchange='switchChangeAcademy' />
+  </view>
+</view>
+<view class="divLine"></view>
+
+<view class="weui-cells weui-cells_after-title">
+  <view class="weui-cell">
+    <image class="img" src="/images/zhuanye.png" style="vertical-align: middle;width:25px; height: 25px;"></image>
+    <view class="weui-cell__bd">专业</view>
+    <view class="weui-cell__ft">{{myinfo.major}}</view>
+    <switch style="transform:scale(0.8);"  checked='{{switchMajor}}' bindchange='switchChangeMajor' />
+  </view>
+</view>
+<view class="divLine"></view>
+
+<view class="weui-cells weui-cells_after-title">
+  <navigator url="/pages/modify/modify" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <image class="img" src="/images/bianji.png" style="vertical-align: middle;width:25px; height: 25px;"></image>
+    <view class="weui-cell__bd">编辑资料</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+</view>
+<view class="divLine"></view>
+
+<view class="weui-cells weui-cells_after-title">
+  <navigator url="/pages/record/record" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <image class="img" src="/images/lishi.png" style="vertical-align: middle;width:25px; height: 25px;"></image>
+    <view class="weui-cell__bd">发帖历史</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+</view>
+<view class="divLine"></view>
+
+<view class="weui-cells weui-cells_after-title">
+  <navigator url="/pages/favorite/favorite" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <image class="img" src="/images/jilu.png" style="vertical-align: middle;width:25px; height: 25px;"></image>
+    <view class="weui-cell__bd">收藏记录</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+</view>
+<view class="divLine"></view>
+
+<view class="weui-cells weui-cells_after-title">
+  <navigator url="/pages/modify_pwd/modify_pwd" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <image class="img" src="/images/mima.png" style="vertical-align: middle;width:25px; height: 25px;"></image>
+    <view class="weui-cell__bd">修改密码</view>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </navigator>
+</view>
+<view class="divLine"></view>
+
+<button class="openContact" type="primary" open-type="contact" bindcontact="handleContact">联系客服</button>

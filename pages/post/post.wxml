@@ -1,0 +1,50 @@
+<!--pages/post/post.wxml-->
+
+<view class="weui-cell">
+  <view class="weui-cell__ft">新建动态</view>
+</view>
+
+<view class="radio_style">
+<radio-group class="radio-group" bindchange="radioChange">
+ <label wx:for-items="{{items}}">
+ <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+ </label>
+</radio-group>
+</view>
+
+  <view class="weui-cell__bd">
+    <input class="weui-input" placeholder="为你的帖子想一个亮眼的标题吧！" auto-focus bindinput="titleInput" controlled="{{true}}" value="{{title}}" open-type="getUserInfo" />
+    <view class="weui-textarea-counter">{{length_title}}/20</view>
+  </view>
+
+
+<view class="divLine"></view>
+
+
+<view class="weui-cell">
+  <view class="weui-cell__bd">
+    <textarea class="weui-textarea" placeholder="来吧，尽情发挥吧……" style="height:9em" maxlength="900" auto-focus bindinput="contentInput" controlled="{{true}}" value="{{content}}" open-type="getUserInfo" />
+    <view class="weui-textarea-counter">{{length_content}}/300</view>
+  </view>
+</view>
+
+<!--
+<button bindtap="commitPost" class="weui-btn" type="default" size="mini">
+  <image src='/images/fasong.png' style="margin-button:4px;margin-left:4px;vertical-align: middle;width:40px; height: 40px;"></image>发送</button>
+-->
+
+<view class="weui-uploader__bd">
+  <view class="weui-uploader__files" id="uploaderFiles">
+    <block wx:for="{{images}}" wx:key="*this">
+      <view class="weui-uploader__file" bindtap="previewImage" id="{{item}} " >
+        <icon type='clear' bindtap='removeImg'  data-index="{{idx}}" ></icon>
+        <image class="weui-uploader__img" src="{{item}}" style="width:80px; height: 80px;margin-top:12px;margin-button:12px;margin-left:8px;margin-right:8px;vertical-align: middle;" />
+      </view>
+    </block>
+  </view>
+  <view class="weui-uploader__input-box">
+    <view class="weui-uploader__input" bindtap="chooseImage"> </view>
+  </view>
+</view>
+
+<button bindtap="commitPost" class="weui-btn" type="primary">发布</button>

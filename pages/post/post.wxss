@@ -1,0 +1,123 @@
+/* pages/post/post.wxss */
+
+page {
+  background-color: #ededed;
+}
+
+.weui-cells_after-title {
+  margin-top: 0;
+}
+
+.weui-cells {
+  position: relative;
+  margin-top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  line-height: 1.41176471;
+  font-size: 17px;
+}
+
+.weui-cell {
+  padding: 0px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  background-color: #ededed;
+  /* rgba(233, 225, 225, 0.075);*/
+}
+.weui-cell__ft {
+  text-align: right;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+  line-height: 1em;
+  margin-top: 16px;
+  margin-left: 8px;
+  padding-bottom: 16px;
+
+}
+.weui-cell__bd {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  background-color: #fff;
+}
+
+.weui-textarea {
+  display: block;
+  width: 100%;
+  margin-left: 8px;
+  margin-top: 9px;
+}
+
+.weui-textarea-counter {
+  color: rgba(0, 0, 0, 0.3);
+  text-align: right;
+  margin-right: 8px;
+}
+
+.weui-cells__title {
+  margin-top: 16px;
+  margin-bottom: 3px;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+}
+
+.weui-btn {
+  margin-top: 35px;
+  border-color: #fff;
+  border: none;
+  border-radius: 50px;
+}
+
+.divLine{
+ background: #ededed;
+ width: 100%;
+ height: 20rpx;
+}
+.weui-input {
+  height: 3em;
+  min-height: 1.41176471em;
+  line-height: 3;
+  margin-left: 8px;
+  font-style:‘Courier New’, Courier, monospace;
+}
+
+/**单选按钮**/
+.radio_style{
+  background-color: #fff;
+  margin-bottom: 8px;
+  padding-left: 6px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.radio-group {
+/*  transform:scale(0.6);*/
+  zoom:0.7;
+  font-size: 20px;
+}
+
+/**上传图片**/
+.weui-uploader__input-box {
+  float: left;
+  position: relative;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.weui-uploader__file {
+  float: left;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  width: 80px;
+  height: 80px;
+}

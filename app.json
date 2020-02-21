@@ -1,0 +1,47 @@
+{
+  "cloud": true,
+  "pages": [
+    "pages/login/login",
+    "pages/register/register",
+    "pages/hot/hot",
+    "pages/post/post",
+    "pages/myInfo/myInfo",
+    "pages/modify/modify",
+    "pages/favorite/favorite",
+    "pages/record/record",
+    "pages/modify_pwd/modify_pwd",
+    "pages/userInfo/userInfo",
+    "pages/room/room"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#43d367",  
+    "navigationBarTitleText": "校园论坛小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/hot/hot",
+        "text": "社区",
+        "color": "#bfbfbf",
+        "iconPath": "images/新建文件夹/remen_off.png",
+        "selectedIconPath": "images/新建文件夹/remen_on.png"
+      },
+      {
+        "pagePath": "pages/post/post",
+        "text": "发帖",
+        "iconPath": "images/新建文件夹/fatie_off.png",
+        "selectedIconPath": "images/新建文件夹/fatie_on.png"
+      },
+      {
+        "pagePath": "pages/myInfo/myInfo",
+        "text": "我的",
+        "iconPath": "images/新建文件夹/wode_off.png",
+        "selectedIconPath": "images/新建文件夹/wode_on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

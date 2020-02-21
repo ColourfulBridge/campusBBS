@@ -1,0 +1,32 @@
+<!--pages/modify_pwd/modify_pwd.wxml-->
+<view class="weui-cell ">
+  <view class="weui-cell__hd">
+    <view class="weui-label">旧密码</view>
+  </view>
+  <view class="weui-cell__bd">
+    <input class="weui-input"  bindchange="passwordOldInput" placeholder="请输入旧密码" password="true"/>
+  </view>
+</view>
+
+<view class="weui-cell ">
+  <view class="weui-cell__hd">
+    <view class="weui-label">新密码</view>
+  </view>
+  <view class="weui-cell__bd">
+    <input class="weui-input"  bindchange="passwordBeforeInput" placeholder="请输入新密码" password="true"/>
+  </view>
+</view>
+
+<view class="weui-cell ">
+  <view class="weui-cell__hd">
+    <view class="weui-label">重复新密码</view>
+  </view>
+  <view class="weui-cell__bd">
+    <input class="weui-input"  bindchange="passwordAfterInput" placeholder="请输入重复新密码" password="true" />
+  </view>
+</view>
+
+<view class="divLine"></view>
+
+<button class="weui-btn" type="primary" bindtap="passwordInfo">修改</button>
+

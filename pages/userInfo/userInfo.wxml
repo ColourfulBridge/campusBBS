@@ -1,0 +1,41 @@
+<!--pages/userInfo/userInfo.wxml-->
+<!--<image class='background' src="../../images/10.png"></image>  -->
+<image class="userAvatarUrl" src="{{head}}"></image>
+<image bindtap="chatroom" data-openid="{{openid}}" data-nickname="{{nickname}}" class='sixin_img' src="../../images/sixin.png"></image>
+
+<view>
+<image class="img" src="/images/nicheng.png" style="vertical-align: middle;width:20px; height: 20px;"></image>
+<text>昵称</text>
+<text class="content">{{nickname}}</text>
+</view>
+
+<view>
+<image class="img" src="/images/xingming.png" style="vertical-align: middle;width:20px; height: 20px;"></image>
+<text>姓名</text>
+<text class="content">{{name}}</text>
+</view>
+
+<view>
+<image class="img" src="/images/xuehao.png" style="vertical-align: middle;width:20px; height: 20px;"></image>
+<text>学号</text>
+<text class="content">{{number}}</text>
+</view>
+
+<view>
+<image class="img" src="/images/xingbie.png" style="vertical-align: middle;width:20px; height: 20px;"></image>
+<text>性别</text>
+<text class="content">{{sex}}</text>
+</view>
+
+<view>
+<image class="img" src="/images/xueyuan.png" style="vertical-align: middle;width:20px; height: 20px;"></image>
+<text>学院</text>
+<text class="content">{{academy}}</text>
+</view>
+
+<view>
+<image class="img" src="/images/zhuanye.png" style="vertical-align: middle;width:20px; height: 20px;"></image>
+<text>专业</text>
+<text class="content">{{major}}</text>
+</view>
+
