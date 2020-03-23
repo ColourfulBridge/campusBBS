@@ -24,10 +24,8 @@ Page({
     var user = e.currentTarget.dataset
     if (user.openid != app.globalData.my_openid){
       wx.navigateTo({
-        url: '/pages/room/room?openid=' + user.openid + "&nickname=" + user.nickname
+        url: '/pages/room/room?openid=' + user.openid + "&nickname=" + user.nickname + "&head=" + user.head
       })
-      console.log("user.openid:" + user.openid)
-      console.log("user.nickname:" + user.nickname)
     }else{
       wx.showToast({
         title: '不可以自己和自己对话哦o(TヘTo)',
@@ -35,7 +33,6 @@ Page({
         duration: 2000
       })
     }
-    
   },
 
   /**

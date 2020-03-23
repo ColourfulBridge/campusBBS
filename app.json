@@ -11,11 +11,12 @@
     "pages/record/record",
     "pages/modify_pwd/modify_pwd",
     "pages/userInfo/userInfo",
-    "pages/room/room"
+    "pages/room/room",
+    "pages/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#43d367",  
+    "navigationBarBackgroundColor": "#43d367",
     "navigationBarTitleText": "校园论坛小程序",
     "navigationBarTextStyle": "black"
   },
@@ -33,6 +34,12 @@
         "text": "发帖",
         "iconPath": "images/新建文件夹/fatie_off.png",
         "selectedIconPath": "images/新建文件夹/fatie_on.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "私信",
+        "iconPath": "images/新建文件夹/sixin_off.png",
+        "selectedIconPath": "images/新建文件夹/sixin_on.png"
       },
       {
         "pagePath": "pages/myInfo/myInfo",

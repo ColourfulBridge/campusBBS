@@ -1,7 +1,7 @@
 <!--pages/userInfo/userInfo.wxml-->
 <!--<image class='background' src="../../images/10.png"></image>  -->
 <image class="userAvatarUrl" src="{{head}}"></image>
-<image bindtap="chatroom" data-openid="{{openid}}" data-nickname="{{nickname}}" class='sixin_img' src="../../images/sixin.png"></image>
+<image bindtap="chatroom" data-openid="{{openid}}" data-nickname="{{nickname}}" data-head="{{head}}" class='sixin_img' src="../../images/sixin.png"></image>
 
 <view>
 <image class="img" src="/images/nicheng.png" style="vertical-align: middle;width:20px; height: 20px;"></image>
