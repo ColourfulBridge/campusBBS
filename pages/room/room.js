@@ -13,6 +13,7 @@ Page({
     chatRoomGroupId: '',//唯一定义聊天组，可以建立群，或者好友聊天 
     chatRoomGroupName: '',//聊天的群名，或者好友的昵称 
     chatRoomOpenId: '',//对方的openid
+    chatRoomHead:'',//对方的头像
     // functions for used in chatroom components 
     onGetUserInfo: null,
     getOpenID: null,
@@ -27,6 +28,7 @@ Page({
       getOpenID: this.getOpenID,
       chatRoomGroupName: options.nickname,
       chatRoomOpenId: options.openid,
+      chatRoomHead: options.head,
     })
     if (options.openid.localeCompare(app.globalData.my_openid) <= 0) {
       this.setData({

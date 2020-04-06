@@ -1,3 +1,7 @@
+var util = require('../../utils/util.js');
+const app = getApp()
+const DB = wx.cloud.database()
+const message = DB.collection("Message")
 const FATAL_REBUILD_TOLERANCE = 10
 const SETDATA_SCROLL_TO_BOTTOM = {
   scrollTop: 100000,
@@ -8,8 +12,10 @@ Component({
   properties: {
     envId: String,
     collection: String,
-    groupId: String,
-    groupName: String,
+    groupId: String,      //聊天室
+    groupName: String,    //聊天的群名，或者好友的昵称
+    link: String,         //对方的openid
+    linkHead: String,     //对方的头像
     userInfo: Object,
     onGetUserInfo: {
       type: Function,
@@ -170,7 +176,7 @@ Component({
           sendTime: new Date(),
           sendTimeTS: Date.now(), // fallback
         }
-
+        
         this.setData({
           textInputValue: '',
           chats: [
@@ -187,6 +193,64 @@ Component({
         await db.collection(collection).add({
           data: doc,
         })
+
+        //向message表中添加新注册用户的信息
+        message.where({
+          groupId: this.data.groupId
+        }).get().then(res => {
+          console.log("message读取成功", res.data)
+          if(res.data.length!=0){
+            message.where({
+              groupId: this.data.groupId
+            }).update({
+              data: {
+                msgType: 'text',
+                textContent: e.detail.value,
+                sendTime: util.formatTime(new Date()),
+                sendTimeTS: Date.now(), // fallback
+              },
+              success: function (res) {
+                console.log("message修改成功", res)
+              },
+              fail: function (res) {
+                console.log("message修改失败", res)
+              },
+            })
+          }else{
+            message.add({
+              data: {
+                my_openid: app.globalData.my_openid, //我
+                groupId: this.data.groupId, //聊天室
+                link: this.data.link, //联系人
+                avatar: this.data.linkHead, //联系人头像
+                groupName: this.data.groupName,//联系人姓名
+                msgType: 'text',
+                textContent: e.detail.value,
+                sendTime: util.formatTime(new Date()),
+                sendTimeTS: Date.now(), // fallback
+              }
+            }).catch(res => {
+              console.log("添加message出错");
+            })
+            message.add({
+              data: {
+                my_openid: this.data.link, //联系人
+                groupId: this.data.groupId, //聊天室
+                link: app.globalData.my_openid, //我
+                avatar: app.globalData.my_headUrl, //我的头像
+                groupName: app.globalData.my_name,//我的姓名
+                msgType: 'text',
+                textContent: e.detail.value,
+                sendTime: util.formatTime(new Date()),
+                sendTimeTS: Date.now(), // fallback
+              }
+            }).catch(res => {
+              console.log("添加message出错");
+            })
+          }
+          
+        })
+        
 
         this.setData({
           chats: this.data.chats.map(chat => {
@@ -216,6 +280,61 @@ Component({
             sendTime: new Date(),
             sendTimeTS: Date.now(), // fallback
           }
+
+          //向message表中添加新注册用户的信息
+          message.where({
+            groupId: this.data.groupId
+          }).get().then(res => {
+            console.log("message读取成功", res.data)
+            if (res.data.length != 0) {
+              message.where({
+                groupId: this.data.groupId
+              }).update({
+                data: {
+                  msgType: 'image',
+                  sendTime: util.formatTime(new Date()),
+                  sendTimeTS: Date.now().toLocaleString(), // fallback
+                },
+                success: function (res) {
+                  console.log("message修改成功", res)
+                },
+                fail: function (res) {
+                  console.log("message修改失败", res)
+                },
+              })
+            } else {
+              message.add({
+                data: {
+                  my_openid: app.globalData.my_openid, //我
+                  groupId: this.data.groupId, //聊天室
+                  link: this.data.link, //联系人
+                  avatar: this.data.linkHead, //联系人头像
+                  groupName: this.data.groupName,//联系人姓名
+                  msgType: 'image',
+                  sendTime: util.formatTime(new Date()),
+                  sendTimeTS: Date.now(), // fallback
+                }
+              }).catch(res => {
+                console.log("添加message出错");
+              })
+              message.add({
+                data: {
+                  my_openid: this.data.link, //联系人
+                  groupId: this.data.groupId, //聊天室
+                  link: app.globalData.my_openid, //我
+                  avatar: app.globalData.my_headUrl, //我的头像
+                  groupName: app.globalData.my_name,//我的姓名
+                  msgType: 'image',
+                  sendTime: util.formatTime(new Date()),
+                  sendTimeTS: Date.now(), // fallback
+                }
+              }).catch(res => {
+                console.log("添加message出错");
+              })
+            }
+
+          })
+
 
           this.setData({
             chats: [

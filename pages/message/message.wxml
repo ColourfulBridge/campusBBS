@@ -1,14 +1,14 @@
 <!--pages/message/message.wxml--> 
 <view class="container chat">
   <block wx:for="{{linkInfo}}" wx:for-index="index" wx:for-item="item">
-    <view bindtap="goToRoom" data-openid="{{item._openid}}" data-name="{{item.name}}" class="chat-item flex-wrp">
+    <view bindtap="goToRoom" data-openid="{{item.link}}" data-nickname="{{item.groupName}}"  data-head="{{item.avatar}}" class="chat-item flex-wrp">
       <view class="avatar flex-item">
-        <image src="{{item.avatarUrl}}"></image>
+        <image src="{{item.avatar}}"></image>
       </view>
       <view class="chat-content flex-item">
         <view class="chat-source">
-          <text class="chatmate">{{item.name}}</text>
-          <text class="lasttime"></text><!--时间--> 
+          <text class="chatmate">{{item.groupName}}</text>
+          <text class="lasttime">{{item.sendTime}}</text>
         </view>
         <text class="chat-txt">{{item.textContent}}</text>
       </view>
