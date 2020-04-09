@@ -36,6 +36,13 @@ Page({
 
   //登录按钮
   bindLogin: function () {
+    if(this.data.no.length!=8)
+    {
+      wx.showToast({
+        title: '学号长度无效',
+      })
+      return;
+    }
     wx.showLoading({
       title: '登录中...',
     })

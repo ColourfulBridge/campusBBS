@@ -144,11 +144,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function() {
-    console.log("当前全局状态",app.globalData.my_login_state);
     this.setData({
       login_state:app.globalData.my_login_state
     })
-    console.log("当前状态", this.data.login_state);
     user.where({
       _openid: app.globalData.my_openid 
     }).get().then(res => {
