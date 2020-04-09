@@ -270,14 +270,14 @@ Page({
         that.setData({
           feed: array,
         });
-        let arr = [];
+        let arr = that.data.feed.concat();
         users
           .where({
             _openid: app.globalData.my_openid, // 填入当前用户 openid
           })
           .get().then(res => {
             var url;
-            arr = this.data.feed.concat()
+            arr = that.data.feed.concat();
             for (let i = 0; i < arr.length; i++) {
               Object.assign(arr[i], {
                 "isStore": res.data[0].collect.includes(arr[i]["_id"]),
@@ -644,78 +644,90 @@ Page({
     }) : this.setData({
       [collect_counts]: count + 1
     });
+    wx.cloud.callFunction({
+      name: 'store',
+      data: {
+        my_openid: app.globalData.my_openid,
+        isstore: isstore,
+        post_id: post_id,
+      },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: console.error
+    })
 
-    if (!isstore) {
-      users.where({
-        _openid: app.globalData.my_openid
-      }).update({
-        data: {
-          collect: _.push(post_id)
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("收藏-用户出错1");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
+    // if (!isstore) {
+    //   users.where({
+    //     _openid: app.globalData.my_openid
+    //   }).update({
+    //     data: {
+    //       collect: _.push(post_id)
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("收藏-用户出错1");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
 
-      posts.where({
-        _id: post_id
-      }).update({
-        data: {
-          collect_counts: _.inc(1)
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("收藏-帖子出错1");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
+    //   posts.where({
+    //     _id: post_id
+    //   }).update({
+    //     data: {
+    //       collect_counts: _.inc(1)
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("收藏-帖子出错1");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
 
-    } else {
-      users.where({
-        _openid: app.globalData.my_openid
-      }).update({
-        data: {
-          collect: _.pull(post_id) //从collect数组中删除对应的post_id
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("收藏-用户出错2");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
+    // } else {
+    //   users.where({
+    //     _openid: app.globalData.my_openid
+    //   }).update({
+    //     data: {
+    //       collect: _.pull(post_id) //从collect数组中删除对应的post_id
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("收藏-用户出错2");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
 
-      posts.where({
-        _id: post_id
-      }).update({
-        data: {
-          collect_counts: _.inc(-1)
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("收藏-帖子出错2");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
+    //   posts.where({
+    //     _id: post_id
+    //   }).update({
+    //     data: {
+    //       collect_counts: _.inc(-1)
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("收藏-帖子出错2");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
 
-    }
+    // }
   },
 
 
@@ -863,14 +875,14 @@ Page({
         that.setData({
           feed: array,
         });
-        let arr = [];
+        let arr = that.data.feed.concat();
         users
           .where({
             _openid: app.globalData.my_openid, // 填入当前用户 openid
           })
           .get().then(res => {
             var url;
-            arr = this.data.feed.concat()
+            arr = that.data.feed.concat();
             for (let i = 0; i < arr.length; i++) {
               Object.assign(arr[i], {
                 "isStore": res.data[0].collect.includes(arr[i]["_id"]),
