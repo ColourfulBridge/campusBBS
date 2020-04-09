@@ -7,7 +7,7 @@ const comments = DB.collection("Comment")
 const _ = DB.command;
 var isGoodSort = false; //是否按照点赞数对帖子排序
 const formatTime = require('../../utils/util.js');
-
+ 
 Page({
   data: {
     inputShowed: false,

@@ -71,7 +71,7 @@
 
           <text class="text">{{item.collect_counts}}</text>
 
-          <image lazy-load="true" class="icon_img" src="https://ae01.alicdn.com/kf/H9bb5c93470464ebdbaab74da53070f91Y.png" bindtap="comment"></image>
+          <image lazy-load="true" class="icon_img" src="../../images/pinglun.png" bindtap="comment"></image>
           <text class="text">{{item.comment_counts}}</text>
           <view class="divLine1"> </view>
         </view>
@@ -113,10 +113,13 @@
   </view>
 
   <!-- 浮动按钮 -->
+  <image class='fenlei' src="../../images/paixu.png" bindtap="goodSort"></image>
+  <image class='goTop' src="../../images/huidaodingbu.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
+
+  <!---------------------------------------
   <image class='fenlei' src="../../images/redupaixu.png" bindtap="goodSort"></image>
   <image class='goTop' src="../../images/top.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
-
-  <!------------------------------------------------------------------------------------->
+  ---------------------------------------------->
 
 </view>
 

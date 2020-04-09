@@ -1,11 +1,12 @@
 /* pages/login/login.wxss */
 
-page {
+page{
   height: 100%;
   background-size: 100% 150%;
    background-image: url("https://ae01.alicdn.com/kf/H3a3217c64e0d42c5a54576e8567d2d67Q.jpg");
    background-repeat:no-repeat;
    -moz-background-size:100% 100%;
+
 }
 
 .topInfo{
