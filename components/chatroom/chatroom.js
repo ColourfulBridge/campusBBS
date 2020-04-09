@@ -113,7 +113,7 @@ Component({
 
     onRealtimeMessageSnapshot(snapshot) {
       console.warn(`收到消息`, snapshot)
-      
+
       if (snapshot.type === 'init') {
         this.setData({
           chats: [
@@ -219,6 +219,7 @@ Component({
           }else{
             message.add({
               data: {
+                _openid: app.globalData.my_openid,
                 my_openid: app.globalData.my_openid, //我
                 groupId: this.data.groupId, //聊天室
                 link: this.data.link, //联系人
@@ -234,6 +235,7 @@ Component({
             })
             message.add({
               data: {
+                _openid: this.data.link,
                 my_openid: this.data.link, //联系人
                 groupId: this.data.groupId, //聊天室
                 link: app.globalData.my_openid, //我
@@ -305,6 +307,7 @@ Component({
             } else {
               message.add({
                 data: {
+                  _openid: app.globalData.my_openid,
                   my_openid: app.globalData.my_openid, //我
                   groupId: this.data.groupId, //聊天室
                   link: this.data.link, //联系人
@@ -319,6 +322,7 @@ Component({
               })
               message.add({
                 data: {
+                  _openid: this.data.link,
                   my_openid: this.data.link, //联系人
                   groupId: this.data.groupId, //聊天室
                   link: app.globalData.my_openid, //我
