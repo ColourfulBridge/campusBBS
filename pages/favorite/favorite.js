@@ -374,12 +374,8 @@ Page({
               });
             }
           }).catch(res => {
-            console.log("上拉触底-用户出错1");
-            wx.showToast({
-              title: '网络出错o(TヘTo)',
-              icon: 'none',
-              duration: 2000
-            })
+            console.log("上拉触底");
+
           })
 
         var url;
@@ -430,11 +426,7 @@ Page({
           })
             .catch(res => {
               console.log("上拉触底-评论出错");
-              wx.showToast({
-                title: '网络出错o(TヘTo)',
-                icon: 'none',
-                duration: 2000
-              })
+
             })
         }
       }
@@ -479,76 +471,88 @@ Page({
     }) : this.setData({
       [good_counts]: count + 1
     });
+    wx.cloud.callFunction({
+      name: 'good',
+      data: {
+        my_openid: app.globalData.my_openid,
+        isgood: isgood,
+        post_id: post_id,
+      },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: console.error
+    })
 
-    if (!isgood) {
-      users.where({
-        _openid: app.globalData.my_openid
-      }).update({
-        data: {
-          good: _.push(post_id)
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("点赞-用户出错1");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
+    // if (!isgood) {
+    //   users.where({
+    //     _openid: app.globalData.my_openid
+    //   }).update({
+    //     data: {
+    //       good: _.push(post_id)
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("点赞-用户出错1");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
 
-      posts.where({
-        _id: post_id
-      }).update({
-        data: {
-          good_counts: _.inc(1)
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("点赞-帖子出错1");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
-    } else {
-      users.where({
-        _openid: app.globalData.my_openid
-      }).update({
-        data: {
-          good: _.pull(post_id) //从post数组中删除对应的post_id
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("点赞-用户出错2");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
+    //   posts.where({
+    //     _id: post_id
+    //   }).update({
+    //     data: {
+    //       good_counts: _.inc(1)
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("点赞-帖子出错1");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
+    // } else {
+    //   users.where({
+    //     _openid: app.globalData.my_openid
+    //   }).update({
+    //     data: {
+    //       good: _.pull(post_id) //从post数组中删除对应的post_id
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("点赞-用户出错2");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
 
-      posts.where({
-        _id: post_id
-      }).update({
-        data: {
-          good_counts: _.inc(-1)
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("点赞-帖子出错2");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
-    }
+    //   posts.where({
+    //     _id: post_id
+    //   }).update({
+    //     data: {
+    //       good_counts: _.inc(-1)
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("点赞-帖子出错2");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
+    // }
   },
   /**
    * 为评论点赞
