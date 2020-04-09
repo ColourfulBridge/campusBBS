@@ -1,4 +1,4 @@
-// pages/hot/hot.js热门
+// favorite.js
 const app = getApp()
 const DB = wx.cloud.database()
 const posts = DB.collection('Post')
@@ -236,14 +236,15 @@ Page({
           posts.where({
             _id: res.data[0]["collect"][i], // 填入收藏帖子编号
           }).get().then(result => {
-            if(result.data.length !=0) {
+            console.log("res", result.data.length);
+            if (result.data.length != 0) {
               result.data[0].post_date = formatTime.formatTime(result.data[0].post_date);
               array.push(result.data[0]);
               that.setData({
                 feed: array,
               });
             }
-            else { //解决删帖后用户的收藏记录的问题
+            else if (result.data.length == 0) { //解决删帖后用户的收藏记录的问题
               users.where({
                 _openid: app.globalData.my_openid
               }).update({
@@ -261,29 +262,32 @@ Page({
                   })
                 })
             }
-            
           })
         }
       })
       .then(res => {
-        let arr = this.data.feed.concat();
-        console.log("245", arr);
+        console.log("812", array);
+        that.setData({
+          feed: array,
+        });
+        let arr = [];
         users
           .where({
             _openid: app.globalData.my_openid, // 填入当前用户 openid
           })
           .get().then(res => {
             var url;
+            arr = this.data.feed.concat()
             for (let i = 0; i < arr.length; i++) {
               Object.assign(arr[i], {
                 "isStore": res.data[0].collect.includes(arr[i]["_id"]),
                 "isGood": res.data[0].good.includes(arr[i]["_id"]),
                 "isFold": true, //帖子内容是否折叠
                 "isShow": false, //评论内容是否展示
-
                 "commentText": "", //评论输入框内容
                 "commentFeed": [], //评论数组
               });
+              console.log(arr[i]);
               this.updateFeed(); //刷新界面
             }
           }).catch(res => {
@@ -345,6 +349,7 @@ Page({
           })
         }
       })
+
   },
 
   /**
@@ -858,13 +863,14 @@ Page({
         that.setData({
           feed: array,
         });
-        let arr = this.data.feed.concat();
+        let arr = [];
         users
           .where({
             _openid: app.globalData.my_openid, // 填入当前用户 openid
           })
           .get().then(res => {
             var url;
+            arr = this.data.feed.concat()
             for (let i = 0; i < arr.length; i++) {
               Object.assign(arr[i], {
                 "isStore": res.data[0].collect.includes(arr[i]["_id"]),
@@ -874,6 +880,7 @@ Page({
                 "commentText": "", //评论输入框内容
                 "commentFeed": [], //评论数组
               });
+              console.log(arr[i]);
               this.updateFeed(); //刷新界面
             }
           }).catch(res => {

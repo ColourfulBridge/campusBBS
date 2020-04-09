@@ -1,4 +1,4 @@
-// pages/hot/hot.js热门
+// record.js
 const app = getApp()
 const DB = wx.cloud.database()
 const posts = DB.collection('Post')
