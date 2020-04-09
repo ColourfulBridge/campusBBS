@@ -12,8 +12,10 @@
           <text class="lasttime">{{item.sendTime}}</text>
         </view>
         <text class="chat-txt">{{item.textContent}}
-      <text wx:if="{{item.mark}}" class="weui-badge weui-badge_dot" style="float: right; margin-right: 5px;"></text>
-        </text>
+  <!--      <text wx:if="{{item.mark}}">
+      <text class="weui-badge weui-badge_dot" style="float: right; margin-right: 5px;"></text>
+        </text> -->
+        </text> 
         <!--       <view class="badge" style="margin-left: 5px;">8</view>  -->
       </view>
     </view>

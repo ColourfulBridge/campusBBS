@@ -294,10 +294,11 @@
 }
 
 .good_img {
-  padding-top: 7px;
-  margin-left: 50%;
-  height: 50rpx;
-  width: 50rpx;
+  height: 35rpx;
+  width: 35rpx;
+  float: right;
+  margin-right:0.2em;
+  margin-top: 0.5em;
 }
 
 .icon_img {
@@ -489,7 +490,9 @@ weui-cell__hd {
   font-size: 10px;
   font-family:Cambria, Cochin, Georgia, Times, ‘Times New Roman’, serif;
   color: rgba(0, 0, 0, 0.486);
-  margin-left: 5px;
+  margin-top: 0.5em;
+  float: right;
+  margin-right:10px;
 }
 
 .post_content{

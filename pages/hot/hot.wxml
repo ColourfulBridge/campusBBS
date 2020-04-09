@@ -84,9 +84,9 @@
               <view class="answer">
                 <image bindtap="userInfo" data-openid="{{item._openid}}" data-head="{{item.post_headUrl}}" data-nickname="{{item.post_name}}" class="comment_head" src="{{c_item.comment_headUrl}}" style="margin-right: 7px;vertical-align: left;width:20px; height: 20px;"></image>
                 <text class="comment_name">{{c_item.comment_name}}</text>
+                <text class="comment_good_count">{{c_item.comment_goods_count}}</text>
                 <image lazy-load="true" hidden="{{c_item.isGood}}" class="good_img" src="https://ae01.alicdn.com/kf/H78a6ccf1bc7a48e9a5ef7cbce921f1dcQ.png" bindtap="cGoodComment" data-id='{{item._id}}' data-index='{{index}}' data-cid='{{c_item._id}}' data-cindex='{{c_index}}'></image>
                 <image lazy-load="true" hidden="{{!c_item.isGood}}" class="good_img" src="https://ae01.alicdn.com/kf/H2a8685db2d6347e7802d32e6d3934c36U.png" bindtap="cGoodComment" data-id='{{item._id}}' data-index="{{index}}" data-cid='{{c_item._id}}' data-cindex='{{c_index}}'></image>
-                <text class="comment_good_count">{{c_item.comment_goods_count}}</text>
                 <view>
                   <text class="_text" selectable="true">{{c_item.comment}}</text>
                   <text class="comment_date">\n{{c_item.comment_date}}</text>
