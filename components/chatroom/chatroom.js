@@ -199,22 +199,20 @@ Component({
           groupId: this.data.groupId
         }).get().then(res => {
           console.log("message读取成功", res.data)
-          if(res.data.length>2){
-            message.where({
-              groupId: this.data.groupId
-            }).update({
+          if(res.data.length != 0){
+            wx.cloud.callFunction({
+              name: 'modify',
               data: {
+                groupId: this.data.groupId,
                 msgType: 'text',
                 textContent: e.detail.value,
                 sendTime: util.formatTime(new Date()),
                 sendTimeTS: Date.now(), // fallback
               },
               success: function (res) {
-                console.log("message修改成功", res)
+                console.log(res)
               },
-              fail: function (res) {
-                console.log("message修改失败", res)
-              },
+              fail: console.error
             })
           }else{
             message.add({
@@ -250,7 +248,6 @@ Component({
           }
           
         })
-        
 
         this.setData({
           chats: this.data.chats.map(chat => {
@@ -286,14 +283,14 @@ Component({
             groupId: this.data.groupId
           }).get().then(res => {
             console.log("message读取成功", res.data)
-            if (res.data.length >2) {
+            if (res.data.length != 0) {
               message.where({
                 groupId: this.data.groupId
               }).update({
                 data: {
                   msgType: 'image',
                   sendTime: util.formatTime(new Date()),
-                  sendTimeTS: Date.now().toLocaleString(), // fallback
+                  sendTimeTS: Date.now(), // fallback
                 },
                 success: function (res) {
                   console.log("message修改成功", res)
@@ -301,6 +298,21 @@ Component({
                 fail: function (res) {
                   console.log("message修改失败", res)
                 },
+              })
+
+              wx.cloud.callFunction({
+                name: 'modify',
+                data: {
+                  groupId: this.data.groupId,
+                  msgType: 'image',
+                  textContent: "[图片]",
+                  sendTime: util.formatTime(new Date()),
+                  sendTimeTS: Date.now(), // fallback
+                },
+                success: function (res) {
+                  console.log(res)
+                },
+                fail: console.error
               })
             } else {
               message.add({

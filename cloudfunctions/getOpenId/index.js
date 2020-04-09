@@ -12,3 +12,16 @@ exports.main = async (event, context) => {
     unionid: wxContext.UNIONID,
   }
 }
+
+const db = cloud.database()
+const _ = db.command
+
+exports.main = async (event, context) => {
+  try {
+    return await db.collection('Message').where({
+      my_openid: app.globalData.my_openid
+    }).remove()
+  } catch (e) {
+    console.error(e)
+  }
+}

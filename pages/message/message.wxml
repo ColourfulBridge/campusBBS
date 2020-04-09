@@ -1,8 +1,8 @@
-<!--pages/message/message.wxml--> 
+<!--pages/message/message.wxml-->
 <view hidden="{{login_state}}">登录后即可查看私信</view>
 <view class="container chat" hidden="{{!login_state}}">
   <block wx:for="{{linkInfo}}" wx:for-index="index" wx:for-item="item">
-    <view bindtap="goToRoom" data-openid="{{item.link}}" data-nickname="{{item.groupName}}"  data-head="{{item.avatar}}" class="chat-item flex-wrp">
+    <view bindtap="goToRoom" data-openid="{{item.link}}" data-nickname="{{item.groupName}}" data-head="{{item.avatar}}" class="chat-item flex-wrp">
       <view class="avatar flex-item">
         <image src="{{item.avatar}}"></image>
       </view>
@@ -11,7 +11,12 @@
           <text class="chatmate">{{item.groupName}}</text>
           <text class="lasttime">{{item.sendTime}}</text>
         </view>
-        <text class="chat-txt">{{item.textContent}}</text>
+        <text class="chat-txt">{{item.textContent}}
+  <!--      <text wx:if="{{item.mark}}">
+      <text class="weui-badge weui-badge_dot" style="float: right; margin-right: 5px;"></text>
+        </text> -->
+        </text> 
+        <!--       <view class="badge" style="margin-left: 5px;">8</view>  -->
       </view>
     </view>
   </block>
