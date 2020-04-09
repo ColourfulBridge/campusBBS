@@ -199,7 +199,7 @@ Component({
           groupId: this.data.groupId
         }).get().then(res => {
           console.log("message读取成功", res.data)
-          if(res.data.length!=0){
+          if(res.data.length>2){
             message.where({
               groupId: this.data.groupId
             }).update({
@@ -286,7 +286,7 @@ Component({
             groupId: this.data.groupId
           }).get().then(res => {
             console.log("message读取成功", res.data)
-            if (res.data.length != 0) {
+            if (res.data.length >2) {
               message.where({
                 groupId: this.data.groupId
               }).update({
