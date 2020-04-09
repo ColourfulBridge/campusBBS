@@ -32,6 +32,6 @@
     </view>
   </view>
   <text bindtap="bindModify" class="myregister" style="color:#ffffff">注册</text>
-  <text class="myhelp" style="color:#ffffff">游客</text>
+  <text class="myhelp" style="color:#ffffff" bindtap="vister_handle">游客</text>
   <button class="mybtn" type="primary" disabled='{{disabled}}' bindtap="bindLogin">登录</button>
 </view>

@@ -38,4 +38,3 @@
 <text>专业</text>
 <text class="content">{{major}}</text>
 </view>
-

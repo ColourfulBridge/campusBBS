@@ -6,7 +6,7 @@ const users = DB.collection("User")
 const comments = DB.collection("Comment")
 const _ = DB.command;
 var isGoodSort = false; //是否按照点赞数对帖子排序
-const formatTime = require('../../utils/util.js')
+const formatTime = require('../../utils/util.js');
 
 Page({
   data: {
@@ -199,7 +199,7 @@ Page({
   },
 
   /**
-   * 帖子的代码折叠
+   * 评论的代码折叠
    */
   cshowAll: function (e) {
     var post_index = e.currentTarget.dataset.index;
@@ -210,29 +210,6 @@ Page({
     })
   },
 
-  /**
-   * 帖子的代码折叠
-   */
-  showAll: function (e) {
-    var post_index = e.currentTarget.dataset.index;
-    var isFold = "feed[" + post_index + "].isFold";
-    var isfold = this.data.feed[post_index].isFold;
-    this.setData({
-      [isFold]: !isfold
-    })
-  },
-
-  /**
-   * 帖子的代码折叠
-   */
-  cshowAll: function (e) {
-    var post_index = e.currentTarget.dataset.index;
-    var isShow = "feed[" + post_index + "].isShow";
-    var isshow = this.data.feed[post_index].isShow;
-    this.setData({
-      [isShow]: !isshow
-    })
-  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -448,6 +425,15 @@ Page({
    * 点赞
    */
   goodComment: function (e) {
+    //处理游客登录状态
+    if (!app.globalData.my_login_state)
+      {
+        wx.showToast({
+          title: '请先登录',
+          image:'/images/tishi.png',
+        })
+        return;
+      }
     var post_index = e.currentTarget.dataset.index;
     var post_id = e.currentTarget.dataset.id;
     var isGood = "feed[" + post_index + "].isGood";
@@ -538,6 +524,14 @@ Page({
    * 为评论点赞
    */
   cGoodComment: function (e) {
+    //处理游客登录状态
+    if (!app.globalData.my_login_state) {
+      wx.showToast({
+        title: '请先登录',
+        image: '/images/tishi.png',
+      })
+      return;
+    }
     var post_index = e.currentTarget.dataset.index;
     var post_id = e.currentTarget.dataset.id;
     var comment_index = e.currentTarget.dataset.cindex;
@@ -601,6 +595,14 @@ Page({
    * 收藏
    */
   store: function (e) {
+    //处理游客登录状态
+    if (!app.globalData.my_login_state) {
+      wx.showToast({
+        title: '请先登录',
+        image: '/images/tishi.png',
+      })
+      return;
+    }
     console.log("收藏");
     var post_index = e.currentTarget.dataset.index;
     var post_id = e.currentTarget.dataset.id;
@@ -698,6 +700,14 @@ Page({
    * 提交评论
    */
   commitComment: function (e) {
+    //处理游客登录状态
+    if (!app.globalData.my_login_state) {
+      wx.showToast({
+        title: '请先登录',
+        image: '/images/tishi.png',
+      })
+      return;
+    }
     var post_index = e.currentTarget.dataset.index;
     var post_id = e.currentTarget.dataset.id;
     var commenttext = this.data.feed[post_index].commentText;

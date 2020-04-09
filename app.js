@@ -5,6 +5,7 @@ App({
     my_openid: '', //用户的openid,设为全局变量
     my_name:'',//用户的昵称
     my_headUrl:'',//用户的头像地址
+    my_login_state:true,//用户的登录状态
   },
   onLaunch: function () {
     wx.cloud.init({

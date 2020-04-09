@@ -1,4 +1,6 @@
 <!--src=pages/myInfo/myInfo.wxml-->
+<view hidden="{{login_state}}">完成登录后即可查看个人信息</view>
+<view hidden="{{!login_state}}">
 <view class="weui-cells weui-cells_after-title">
   <view class="weui-cell weui-cell_example ">
     <view class="weui-cell__hd">
@@ -104,3 +106,4 @@
 <view class="divLine"></view>
 
 <button class="openContact" type="primary" open-type="contact" bindcontact="handleContact">联系客服</button>
+</view>

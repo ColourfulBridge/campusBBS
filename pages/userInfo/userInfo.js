@@ -17,10 +17,19 @@ Page({
     major:'',
     head:'',
     nickname:'',
-    openid:''
+    openid:'',
+    login_state:app.globalData.my_login_state,
   },
 
   chatroom: function (e) {
+    if(!app.globalData.my_login_state)
+    {
+      wx.showToast({
+        title: '请先登录',
+        image: '/images/tishi.png',
+      })
+      return;
+    }
     var user = e.currentTarget.dataset
     if (user.openid != app.globalData.my_openid){
       wx.navigateTo({

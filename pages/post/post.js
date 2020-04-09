@@ -107,6 +107,14 @@ Page({
    * 用户提交帖子
    */
   commitPost: function() {
+    if(app.globalData.my_login_state==false)
+    {
+      wx.showToast({
+        title: '请先完成登录',
+        image: '/images/tishi.png',
+      })
+      return;
+    }
     console.log("kind为", this.data.kind);
     var that = this;
     console.log("images",that.data.images);

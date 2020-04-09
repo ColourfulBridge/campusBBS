@@ -61,16 +61,17 @@ Page({
         } else {
           if (res.data[0].number===this.data.no&&res.data[0].pwd===this.data.pwd) {
             //登录成功
+            //修改登录状态
             wx.showToast({
               title: '登录成功(๑•̀ㅂ•́)و✧',
               icon: 'success',
               duration: 2000
             })
 
-            //跳转到tabBar主页面
+            //跳转到tabBar主页面 
             wx.switchTab({
               url: '/pages/hot/hot'
-            })
+            }) 
           }
           else{
             //登录失败
@@ -129,5 +130,18 @@ Page({
       }
     })
 
+  },
+
+  //处理游客登录
+  vister_handle:function(){
+    //将登录状态变为未登录
+    app.globalData.my_login_state=false;
+    if (app.globalData.my_login_state == false)
+    {
+      //跳转到tabBar主页面
+      wx.switchTab({
+        url: '/pages/hot/hot'
+      })
+    }
   },
 })
