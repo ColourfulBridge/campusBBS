@@ -113,7 +113,7 @@ Component({
 
     onRealtimeMessageSnapshot(snapshot) {
       console.warn(`收到消息`, snapshot)
-
+      
       if (snapshot.type === 'init') {
         this.setData({
           chats: [
@@ -198,7 +198,7 @@ Component({
         message.where({
           groupId: this.data.groupId
         }).get().then(res => {
-          console.log("message读取成功", res.data)
+          console.log("当前groupId是否message读取成功", res.data, "+", this.data.groupId)
           if(res.data.length!=0){
             message.where({
               groupId: this.data.groupId
