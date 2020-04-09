@@ -294,10 +294,12 @@
 }
 
 .good_img {
-  padding-top: 7px;
-  margin-left: 50%;
-  height: 50rpx;
-  width: 50rpx;
+/*  padding-top: 7px;
+  margin-left: 50%;*/
+  height: 35rpx;
+  width: 35rpx;
+  float: right;
+  margin-right:2em;
 }
 
 .icon_img {
