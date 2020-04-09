@@ -46,6 +46,18 @@ Page({
               [ContentParam]: "[图片]"
             })
           }
+          if (this.data.linkInfo[i].sendTimeTS > this.data.linkInfo[i].sendTimeTSL) {
+            var ContentParam = "linkInfo[" + i + "].mark"
+            that.setData({
+              [ContentParam]: true
+            })
+          } else {
+            var ContentParam = "linkInfo[" + i + "].mark"
+            that.setData({
+              [ContentParam]: false
+            })
+          }
+
         }
       }).catch(console.error)
   },
