@@ -595,44 +595,55 @@ Page({
     }) : this.setData({
       [good_counts]: count + 1
     });
-
-    if (!isgood) {
-      comments.where({
-        _id: comment_id
-      }).update({
-        data: {
-          comment_goods: _.push(app.globalData.my_openid),
-          comment_goods_count: _.inc(1)
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("评论点赞-comment出错");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
-    } else {
-      comments.where({
-        _id: comment_id
-      }).update({
-        data: {
-          comment_goods: _.pull(app.globalData.my_openid),
-          comment_goods_count: _.inc(-1)
-        }
-      })
-        .then(console.log)
-        .catch(res => {
-          console.log("评论取消点赞-comment出错");
-          wx.showToast({
-            title: '网络出错o(TヘTo)',
-            icon: 'none',
-            duration: 2000
-          })
-        })
-    }
+    wx.cloud.callFunction({
+      name: 'goodcomment',
+      data: {
+        my_openid: app.globalData.my_openid,
+        isgood: isgood,
+        comment_id: comment_id,
+      },
+      success: function (res) {
+        console.log(res)
+      },
+      fail: console.error
+    })
+    // if (!isgood) {
+    //   comments.where({
+    //     _id: comment_id
+    //   }).update({
+    //     data: {
+    //       comment_goods: _.push(app.globalData.my_openid),
+    //       comment_goods_count: _.inc(1)
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("评论点赞-comment出错");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
+    // } else {
+    //   comments.where({
+    //     _id: comment_id
+    //   }).update({
+    //     data: {
+    //       comment_goods: _.pull(app.globalData.my_openid),
+    //       comment_goods_count: _.inc(-1)
+    //     }
+    //   })
+    //     .then(console.log)
+    //     .catch(res => {
+    //       console.log("评论取消点赞-comment出错");
+    //       wx.showToast({
+    //         title: '网络出错o(TヘTo)',
+    //         icon: 'none',
+    //         duration: 2000
+    //       })
+    //     })
+    // }
   },
 
   /**
