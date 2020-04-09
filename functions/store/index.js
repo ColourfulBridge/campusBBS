@@ -21,11 +21,7 @@ exports.main = async (event, context) => {
       .then(console.log)
       .catch(res => {
         console.log("收藏-用户出错1");
-        wx.showToast({
-          title: '网络出错o(TヘTo)',
-          icon: 'none',
-          duration: 2000
-        })
+      
       })
 
     await posts.where({
@@ -38,11 +34,7 @@ exports.main = async (event, context) => {
       .then(console.log)
       .catch(res => {
         console.log("收藏-帖子出错1");
-        wx.showToast({
-          title: '网络出错o(TヘTo)',
-          icon: 'none',
-          duration: 2000
-        })
+       
       })
 
   } else {
@@ -56,11 +48,7 @@ exports.main = async (event, context) => {
       .then(console.log)
       .catch(res => {
         console.log("收藏-用户出错2");
-        wx.showToast({
-          title: '网络出错o(TヘTo)',
-          icon: 'none',
-          duration: 2000
-        })
+      
       })
 
     await posts.where({
@@ -73,11 +61,7 @@ exports.main = async (event, context) => {
       .then(console.log)
       .catch(res => {
         console.log("收藏-帖子出错2");
-        wx.showToast({
-          title: '网络出错o(TヘTo)',
-          icon: 'none',
-          duration: 2000
-        })
+       
       })
 
   }
