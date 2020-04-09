@@ -336,11 +336,6 @@ Page({
             }
           }).catch(res => {
             console.log("上拉触底-用户出错1");
-            wx.showToast({
-              title: '网络出错o(TヘTo)',
-              icon: 'none',
-              duration: 2000
-            })
           })
 
         var url;
@@ -391,11 +386,6 @@ Page({
           })
             .catch(res => {
               console.log("上拉触底-评论出错");
-              wx.showToast({
-                title: '网络出错o(TヘTo)',
-                icon: 'none',
-                duration: 2000
-              })
             })
         }
       }
