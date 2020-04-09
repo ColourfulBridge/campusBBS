@@ -1,4 +1,6 @@
 const app = getApp()
+const DB = wx.cloud.database()
+const message = DB.collection("Message")
 
 Page({
   data: {
@@ -39,6 +41,19 @@ Page({
         chatRoomGroupId: app.globalData.my_openid + options.openid,
       })
     }
+    message.where({
+      groupId: this.data.chatRoomGroupId
+    }).update({
+      data: {
+        sendTimeTSL: Date.now(), // fallback
+      },
+      success: function (res) {
+        console.log("message修改sendTimeTSL成功", res)
+      },
+      fail: function (res) {
+        console.log("message修改sendTimeTSL失败", res)
+      },
+    })
 
     // 获取用户信息 
     wx.getSetting({
