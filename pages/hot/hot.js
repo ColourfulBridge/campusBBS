@@ -647,22 +647,17 @@ Page({
           })
 
           //评论数自增1
-          posts.where({
-            _id: post_id
-          }).update({
+          wx.cloud.callFunction({
+            name: 'comment',
             data: {
-              comment_counts: _.inc(1)
-            }
+              post_id: post_id,
+            },
+            success: function (res) {
+              console.log(res)
+            },
+            fail: console.error
           })
-            .then(console.log)
-            .catch(res => {
-              console.log("评论-帖子出错");
-              wx.showToast({
-                title: '网络出错o(TヘTo)',
-                icon: 'none',
-                duration: 2000
-              })
-            })
+          
         })
         .catch(res => {
           console.log("评论-add出错");
@@ -673,22 +668,6 @@ Page({
           })
         })
     }
-      
-
-    //   wx.cloud.callFunction({
-    //     name: 'comment',
-    //     data: {
-    //       post_id: post_id,
-    //       commenttext: commenttext,
-    //       my_name: app.globalData.my_name,
-    //       my_headUrl: app.globalData.my_headUrl,
-    //       date: new Date().toISOString(),
-    //     },
-    //     success: function (res) {
-    //       console.log(res)
-    //     },
-    //     fail: console.error
-    //   })
   },
 
 
