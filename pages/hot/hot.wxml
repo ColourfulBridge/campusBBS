@@ -205,11 +205,15 @@
       </view>
     </block>
   </view>
-
-  <!-- 浮动按钮 -->
+<!-- 浮动按钮 -->
+  <image class='fenlei' src="../../images/paixu.png" bindtap="goodSort"></image>
+  <image class='goTop' src="../../images/huidaodingbu.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
+<!----------
   <image class='fenlei' src="../../images/redupaixu.png" bindtap="goodSort"></image>
   <image class='goTop' src="../../images/top.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
+  --->
 </view>
+
 
 <!--拼单-->
 <view hidden="{{currentTab!==2}}">
@@ -294,9 +298,13 @@
     </block>
   </view>
 
-  <!-- 浮动按钮 -->
+<!-- 浮动按钮 -->
+  <image class='fenlei' src="../../images/paixu.png" bindtap="goodSort"></image>
+  <image class='goTop' src="../../images/huidaodingbu.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
+  <!-- 
   <image class='fenlei' src="../../images/redupaixu.png" bindtap="goodSort"></image>
   <image class='goTop' src="../../images/top.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
+  --->
 </view>
 
 <!--二手转卖-->
@@ -381,10 +389,13 @@
       </view>
     </block>
   </view>
-
-  <!-- 浮动按钮 -->
+<!-- 浮动按钮 -->
+  <image class='fenlei' src="../../images/paixu.png" bindtap="goodSort"></image>
+  <image class='goTop' src="../../images/huidaodingbu.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
+  <!-- 
   <image class='fenlei' src="../../images/redupaixu.png" bindtap="goodSort"></image>
   <image class='goTop' src="../../images/top.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
+  -->
 </view>
 
 <!--公示墙-->
@@ -470,7 +481,11 @@
     </block>
   </view>
 
-  <!-- 浮动按钮 -->
+<!-- 浮动按钮 -->
+  <image class='fenlei' src="../../images/paixu.png" bindtap="goodSort"></image>
+  <image class='goTop' src="../../images/huidaodingbu.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
+  <!-- 
   <image class='fenlei' src="../../images/redupaixu.png" bindtap="goodSort"></image>
   <image class='goTop' src="../../images/top.png" hidden='{{!floorstatus}}' bindtap="goTop"></image>
+  -->
 </view>
