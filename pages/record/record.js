@@ -302,6 +302,52 @@ Page({
                 "commentText": "", //评论输入框内容
                 "commentFeed": [], //评论数组
               });
+              comments.where({
+                pid: arr[i]._id
+              }).get().then(res => {
+
+                //把comment数组中comment部分剥离出来放入feed的commentFeed中
+                var newData = res.data.map(item => {
+                  const {
+                    comment,
+                    comment_date,
+                    comment_name,
+                    comment_headUrl,
+                    comment_goods_count,
+                    _id
+                  } = item
+                  return {
+                    comment,
+                    comment_date,
+                    comment_name,
+                    comment_headUrl,
+                    comment_goods_count,
+                    _id
+                  }
+                })
+
+                //在comment中加入点赞状态
+                for (let j = 0; j < newData.length; j++) {
+                  Object.assign(newData[j], {
+                    "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
+                    //每一条评论点赞数组里是否含有当前用户的id
+                  });
+                  newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
+                }
+
+                //渲染commentFeed
+                var commentfeed = "feed[" + i + "].commentFeed";
+                this.setData({
+                  [commentfeed]: newData
+                })
+              }).catch(res => {
+                console.log("加载-评论出错");
+                wx.showToast({
+                  title: '网络出错o(TヘTo)',
+                  icon: 'none',
+                  duration: 2000
+                })
+              })
               this.updateFeed(); //刷新界面
             }
           }).catch(res => {
@@ -313,55 +359,54 @@ Page({
             })
           })
 
-        var url;
-        for (let i = 0; i < arr.length; i++) {
-          comments.where({
-            pid: arr[i]._id
-          }).get().then(res => {
+        // var url;
+        // for (let i = 0; i < arr.length; i++) {
+        //   comments.where({
+        //     pid: arr[i]._id
+        //   }).get().then(res => {
+        //     //把comment数组中comment部分剥离出来放入feed的commentFeed中
+        //     var newData = res.data.map(item => {
+        //       const {
+        //         comment,
+        //         comment_date,
+        //         comment_name,
+        //         comment_headUrl,
+        //         comment_goods_count,
+        //         _id
+        //       } = item
+        //       return {
+        //         comment,
+        //         comment_date,
+        //         comment_name,
+        //         comment_headUrl,
+        //         comment_goods_count,
+        //         _id
+        //       }
+        //     })
 
-            //把comment数组中comment部分剥离出来放入feed的commentFeed中
-            var newData = res.data.map(item => {
-              const {
-                comment,
-                comment_date,
-                comment_name,
-                comment_headUrl,
-                comment_goods_count,
-                _id
-              } = item
-              return {
-                comment,
-                comment_date,
-                comment_name,
-                comment_headUrl,
-                comment_goods_count,
-                _id
-              }
-            })
+        //     //在comment中加入点赞状态
+        //     for (let j = 0; j < newData.length; j++) {
+        //       Object.assign(newData[j], {
+        //         "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
+        //         //每一条评论点赞数组里是否含有当前用户的id
+        //       });
+        //       newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
+        //     }
 
-            //在comment中加入点赞状态
-            for (let j = 0; j < newData.length; j++) {
-              Object.assign(newData[j], {
-                "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
-                //每一条评论点赞数组里是否含有当前用户的id
-              });
-              newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
-            }
-
-            //渲染commentFeed
-            var commentfeed = "feed[" + i + "].commentFeed";
-            this.setData({
-              [commentfeed]: newData
-            })
-          }).catch(res => {
-            console.log("加载-评论出错");
-            wx.showToast({
-              title: '网络出错o(TヘTo)',
-              icon: 'none',
-              duration: 2000
-            })
-          })
-        }
+        //     //渲染commentFeed
+        //     var commentfeed = "feed[" + i + "].commentFeed";
+        //     this.setData({
+        //       [commentfeed]: newData
+        //     })
+        //   }).catch(res => {
+        //     console.log("加载-评论出错");
+        //     wx.showToast({
+        //       title: '网络出错o(TヘTo)',
+        //       icon: 'none',
+        //       duration: 2000
+        //     })
+        //   })
+        // }
       })
   },
 
@@ -853,16 +898,18 @@ Page({
    * 更新界面
    */
   updatePage() {
+    console.log("放入hot全局的openid", app.globalData.my_openid);
+    //从数据库读取记录加载到页面
     posts.limit(20).orderBy('post_date', 'desc').where({
-      _openid: app.globalData.my_openid, // 填入当前用户 openid
+      _openid: app.globalData.my_openid,
     }).get().then(res => {
-      console.log("here is res.data", res.data);
+
       for (let temp = 0; temp < res.data.length; temp++) {
         res.data[temp].post_date = formatTime.formatTime(res.data[temp].post_date);
-      }
+      };
       this.setData({
         feed: res.data,
-      })
+      });
     })
       .then(res => {
         let arr = this.data.feed.concat();
@@ -878,9 +925,56 @@ Page({
                 "isGood": res.data[0].good.includes(arr[i]["_id"]),
                 "isFold": true, //帖子内容是否折叠
                 "isShow": false, //评论内容是否展示
+
                 "commentText": "", //评论输入框内容
                 "commentFeed": [], //评论数组
               });
+              comments.where({
+                pid: arr[i]._id
+              }).get().then(res => {
+
+                //把comment数组中comment部分剥离出来放入feed的commentFeed中
+                var newData = res.data.map(item => {
+                  const {
+                    comment,
+                    comment_date,
+                    comment_name,
+                    comment_headUrl,
+                    comment_goods_count,
+                    _id
+                  } = item
+                  return {
+                    comment,
+                    comment_date,
+                    comment_name,
+                    comment_headUrl,
+                    comment_goods_count,
+                    _id
+                  }
+                })
+
+                //在comment中加入点赞状态
+                for (let j = 0; j < newData.length; j++) {
+                  Object.assign(newData[j], {
+                    "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
+                    //每一条评论点赞数组里是否含有当前用户的id
+                  });
+                  newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
+                }
+
+                //渲染commentFeed
+                var commentfeed = "feed[" + i + "].commentFeed";
+                this.setData({
+                  [commentfeed]: newData
+                })
+              }).catch(res => {
+                console.log("加载-评论出错");
+                wx.showToast({
+                  title: '网络出错o(TヘTo)',
+                  icon: 'none',
+                  duration: 2000
+                })
+              })
               this.updateFeed(); //刷新界面
             }
           }).catch(res => {
@@ -891,58 +985,7 @@ Page({
               duration: 2000
             })
           })
-
-        var url;
-        for (let i = 0; i < arr.length; i++) {
-          comments.where({
-            pid: arr[i]._id
-          }).get().then(res => {
-
-            //把comment数组中comment部分剥离出来放入feed的commentFeed中
-            var newData = res.data.map(item => {
-              const {
-                comment,
-                comment_date,
-                comment_name,
-                comment_headUrl,
-                comment_goods_count,
-                _id
-              } = item
-              return {
-                comment,
-                comment_date,
-                comment_name,
-                comment_headUrl,
-                comment_goods_count,
-                _id
-              }
-            })
-
-            //在comment中加入点赞状态
-            for (let j = 0; j < newData.length; j++) {
-              Object.assign(newData[j], {
-                "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
-                //每一条评论点赞数组里是否含有当前用户的id
-              });
-              newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
-            }
-
-            //渲染commentFeed
-            var commentfeed = "feed[" + i + "].commentFeed";
-            this.setData({
-              [commentfeed]: newData
-            })
-          }).catch(res => {
-            console.log("加载-评论出错");
-            wx.showToast({
-              title: '网络出错o(TヘTo)',
-              icon: 'none',
-              duration: 2000
-            })
-          })
-        }
       })
-
   },
 
   // 获取滚动条当前位置
