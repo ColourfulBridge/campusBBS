@@ -240,6 +240,71 @@ Page({
             if (result.data.length != 0) {
               result.data[0].post_date = formatTime.formatTime(result.data[0].post_date);
               array.push(result.data[0]);
+              users
+                .where({
+                  _openid: app.globalData.my_openid, // 填入当前用户 openid
+                })
+                .get().then(res => {
+                  var url;
+                  Object.assign(array[i], {
+                    "isStore": true,
+                    "isGood": res.data[0].good.includes(array[i]["_id"]),
+                    "isFold": true, //帖子内容是否折叠
+                    "isShow": false, //评论内容是否展示
+                    "commentText": "", //评论输入框内容
+                    "commentFeed": [], //评论数组
+                  });
+
+                  comments.where({
+                    pid: array[i]._id
+                  }).get().then(res => {
+
+                    //把comment数组中comment部分剥离出来放入feed的commentFeed中
+                    var newData = res.data.map(item => {
+                      const {
+                        comment,
+                        comment_date,
+                        comment_name,
+                        comment_headUrl,
+                        comment_goods_count,
+                        _id
+                      } = item
+                      return {
+                        comment,
+                        comment_date,
+                        comment_name,
+                        comment_headUrl,
+                        comment_goods_count,
+                        _id
+                      }
+                    })
+
+                    //在comment中加入点赞状态
+                    for (let j = 0; j < newData.length; j++) {
+                      Object.assign(newData[j], {
+                        "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
+                        //每一条评论点赞数组里是否含有当前用户的id
+                      });
+                      newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
+                    }
+
+                    //渲染commentFeed
+                    var commentfeed = "feed[" + i + "].commentFeed";
+                    this.setData({
+                      [commentfeed]: newData
+                    })
+                  }).catch(res => {
+                    console.log("加载-评论出错");
+                    wx.showToast({
+                      title: '网络出错o(TヘTo)',
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  })
+                  console.log(array[i]);
+                  this.updateFeed(); //刷新界面
+                })
+
               that.setData({
                 feed: array,
               });
@@ -265,90 +330,90 @@ Page({
           })
         }
       })
-      .then(res => {
-        console.log("812", array);
-        that.setData({
-          feed: array,
-        });
-        let arr = that.data.feed.concat();
-        users
-          .where({
-            _openid: app.globalData.my_openid, // 填入当前用户 openid
-          })
-          .get().then(res => {
-            var url;
-            arr = that.data.feed.concat();
-            for (let i = 0; i < arr.length; i++) {
-              Object.assign(arr[i], {
-                "isStore": res.data[0].collect.includes(arr[i]["_id"]),
-                "isGood": res.data[0].good.includes(arr[i]["_id"]),
-                "isFold": true, //帖子内容是否折叠
-                "isShow": false, //评论内容是否展示
-                "commentText": "", //评论输入框内容
-                "commentFeed": [], //评论数组
-              });
-              console.log(arr[i]);
-              this.updateFeed(); //刷新界面
-            }
-          }).catch(res => {
-            console.log("加载-用户出错1");
-            wx.showToast({
-              title: '网络出错o(TヘTo)',
-              icon: 'none',
-              duration: 2000
-            })
-          })
+      // .then(() => {
+        // that.setData({
+        //   feed: array,
+        // });
+        // let arr = that.data.feed.concat();
+        // users
+        //   .where({
+        //     _openid: app.globalData.my_openid, // 填入当前用户 openid
+        //   })
+        //   .get().then(res => {
+        //     var url;
+        //     arr = that.data.feed.concat();
+        //     console.log("274 ", arr);
+        //     for (let i = 0; i < arr.length; i++) {
+        //       Object.assign(arr[i], {
+        //         "isStore": true,
+        //         "isGood": res.data[0].good.includes(arr[i]["_id"]),
+        //         "isFold": true, //帖子内容是否折叠
+        //         "isShow": false, //评论内容是否展示
+        //         "commentText": "", //评论输入框内容
+        //         "commentFeed": [], //评论数组
+        //       });
+        //       console.log(arr[i]);
+        //       this.updateFeed(); //刷新界面
+        //     }
+        //   }).catch(res => {
+        //     console.log("加载-用户出错1");
+        //     wx.showToast({
+        //       title: '网络出错o(TヘTo)',
+        //       icon: 'none',
+        //       duration: 2000
+        //     })
+        //   })
 
-        var url;
-        for (let i = 0; i < arr.length; i++) {
-          comments.where({
-            pid: arr[i]._id
-          }).get().then(res => {
+      //   var url;
+      //   for (let i = 0; i < arr.length; i++) {
+      //     comments.where({
+      //       pid: arr[i]._id
+      //     }).get().then(res => {
 
-            //把comment数组中comment部分剥离出来放入feed的commentFeed中
-            var newData = res.data.map(item => {
-              const {
-                comment,
-                comment_date,
-                comment_name,
-                comment_headUrl,
-                comment_goods_count,
-                _id
-              } = item
-              return {
-                comment,
-                comment_date,
-                comment_name,
-                comment_headUrl,
-                comment_goods_count,
-                _id
-              }
-            })
+      //       //把comment数组中comment部分剥离出来放入feed的commentFeed中
+      //       var newData = res.data.map(item => {
+      //         const {
+      //           comment,
+      //           comment_date,
+      //           comment_name,
+      //           comment_headUrl,
+      //           comment_goods_count,
+      //           _id
+      //         } = item
+      //         return {
+      //           comment,
+      //           comment_date,
+      //           comment_name,
+      //           comment_headUrl,
+      //           comment_goods_count,
+      //           _id
+      //         }
+      //       })
 
-            //在comment中加入点赞状态
-            for (let j = 0; j < newData.length; j++) {
-              Object.assign(newData[j], {
-                "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
-                //每一条评论点赞数组里是否含有当前用户的id
-              });
-              newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
-            }
+      //       //在comment中加入点赞状态
+      //       for (let j = 0; j < newData.length; j++) {
+      //         Object.assign(newData[j], {
+      //           "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
+      //           //每一条评论点赞数组里是否含有当前用户的id
+      //         });
+      //         newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
+      //       }
 
-            //渲染commentFeed
-            var commentfeed = "feed[" + i + "].commentFeed";
-            this.setData({
-              [commentfeed]: newData
-            })
-          }).catch(res => {
-            console.log("加载-评论出错");
-            wx.showToast({
-              title: '网络出错o(TヘTo)',
-              icon: 'none',
-              duration: 2000
-            })
-          })
-        }
-      })
+      //       //渲染commentFeed
+      //       var commentfeed = "feed[" + i + "].commentFeed";
+      //       this.setData({
+      //         [commentfeed]: newData
+      //       })
+      //     }).catch(res => {
+      //       console.log("加载-评论出错");
+      //       wx.showToast({
+      //         title: '网络出错o(TヘTo)',
+      //         icon: 'none',
+      //         duration: 2000
+      //       })
+      //     })
+      //   }
+      // })
 
   },
 
@@ -856,11 +921,76 @@ Page({
             if (result.data.length != 0) {
               result.data[0].post_date = formatTime.formatTime(result.data[0].post_date);
               array.push(result.data[0]);
+              users
+                .where({
+                  _openid: app.globalData.my_openid, // 填入当前用户 openid
+                })
+                .get().then(res => {
+                  var url;
+                  Object.assign(array[i], {
+                    "isStore": true,
+                    "isGood": res.data[0].good.includes(array[i]["_id"]),
+                    "isFold": true, //帖子内容是否折叠
+                    "isShow": false, //评论内容是否展示
+                    "commentText": "", //评论输入框内容
+                    "commentFeed": [], //评论数组
+                  });
+
+                    comments.where({
+                      pid: array[i]._id
+                    }).get().then(res => {
+
+                      //把comment数组中comment部分剥离出来放入feed的commentFeed中
+                      var newData = res.data.map(item => {
+                        const {
+                          comment,
+                          comment_date,
+                          comment_name,
+                          comment_headUrl,
+                          comment_goods_count,
+                          _id
+                        } = item
+                        return {
+                          comment,
+                          comment_date,
+                          comment_name,
+                          comment_headUrl,
+                          comment_goods_count,
+                          _id
+                        }
+                      })
+
+                      //在comment中加入点赞状态
+                      for (let j = 0; j < newData.length; j++) {
+                        Object.assign(newData[j], {
+                          "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
+                          //每一条评论点赞数组里是否含有当前用户的id
+                        });
+                        newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
+                      }
+
+                      //渲染commentFeed
+                      var commentfeed = "feed[" + i + "].commentFeed";
+                      this.setData({
+                        [commentfeed]: newData
+                      })
+                    }).catch(res => {
+                      console.log("加载-评论出错");
+                      wx.showToast({
+                        title: '网络出错o(TヘTo)',
+                        icon: 'none',
+                        duration: 2000
+                      })
+                    })
+                  console.log(array[i]);
+                  this.updateFeed(); //刷新界面
+                })
+
               that.setData({
                 feed: array,
               });
             }
-            else if (result.data.length == 0){ //解决删帖后用户的收藏记录的问题
+            else if (result.data.length == 0) { //解决删帖后用户的收藏记录的问题
               users.where({
                 _openid: app.globalData.my_openid
               }).update({
@@ -881,91 +1011,90 @@ Page({
           })
         }
       })
-      .then(res => {
-        console.log("812", array);
-        that.setData({
-          feed: array,
-        });
-        let arr = that.data.feed.concat();
-        users
-          .where({
-            _openid: app.globalData.my_openid, // 填入当前用户 openid
-          })
-          .get().then(res => {
-            var url;
-            arr = that.data.feed.concat();
-            for (let i = 0; i < arr.length; i++) {
-              Object.assign(arr[i], {
-                "isStore": res.data[0].collect.includes(arr[i]["_id"]),
-                "isGood": res.data[0].good.includes(arr[i]["_id"]),
-                "isFold": true, //帖子内容是否折叠
-                "isShow": false, //评论内容是否展示
-                "commentText": "", //评论输入框内容
-                "commentFeed": [], //评论数组
-              });
-              console.log(arr[i]);
-              this.updateFeed(); //刷新界面
-            }
-          }).catch(res => {
-            console.log("加载-用户出错1");
-            wx.showToast({
-              title: '网络出错o(TヘTo)',
-              icon: 'none',
-              duration: 2000
-            })
-          })
+      // .then(() => {
+      //   that.setData({
+      //     feed: array,
+      //   });
+      //   let arr = that.data.feed.concat();
+      //   users
+      //     .where({
+      //       _openid: app.globalData.my_openid, // 填入当前用户 openid
+      //     })
+      //     .get().then(res => {
+      //       var url;
+      //       arr = that.data.feed.concat();
+      //       console.log("274 ", arr);
+      //       for (let i = 0; i < arr.length; i++) {
+      //         Object.assign(arr[i], {
+      //           "isStore": true,
+      //           "isGood": res.data[0].good.includes(arr[i]["_id"]),
+      //           "isFold": true, //帖子内容是否折叠
+      //           "isShow": false, //评论内容是否展示
+      //           "commentText": "", //评论输入框内容
+      //           "commentFeed": [], //评论数组
+      //         });
+      //         console.log(arr[i]);
+      //         this.updateFeed(); //刷新界面
+      //       }
+      //     }).catch(res => {
+      //       console.log("加载-用户出错1");
+      //       wx.showToast({
+      //         title: '网络出错o(TヘTo)',
+      //         icon: 'none',
+      //         duration: 2000
+      //       })
+      //     })
 
-        var url;
-        for (let i = 0; i < arr.length; i++) {
-          comments.where({
-            pid: arr[i]._id
-          }).get().then(res => {
+      //   var url;
+      //   for (let i = 0; i < arr.length; i++) {
+      //     comments.where({
+      //       pid: arr[i]._id
+      //     }).get().then(res => {
 
-            //把comment数组中comment部分剥离出来放入feed的commentFeed中
-            var newData = res.data.map(item => {
-              const {
-                comment,
-                comment_date,
-                comment_name,
-                comment_headUrl,
-                comment_goods_count,
-                _id
-              } = item
-              return {
-                comment,
-                comment_date,
-                comment_name,
-                comment_headUrl,
-                comment_goods_count,
-                _id
-              }
-            })
+      //       //把comment数组中comment部分剥离出来放入feed的commentFeed中
+      //       var newData = res.data.map(item => {
+      //         const {
+      //           comment,
+      //           comment_date,
+      //           comment_name,
+      //           comment_headUrl,
+      //           comment_goods_count,
+      //           _id
+      //         } = item
+      //         return {
+      //           comment,
+      //           comment_date,
+      //           comment_name,
+      //           comment_headUrl,
+      //           comment_goods_count,
+      //           _id
+      //         }
+      //       })
 
-            //在comment中加入点赞状态
-            for (let j = 0; j < newData.length; j++) {
-              Object.assign(newData[j], {
-                "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
-                //每一条评论点赞数组里是否含有当前用户的id
-              });
-              newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
-            }
+      //       //在comment中加入点赞状态
+      //       for (let j = 0; j < newData.length; j++) {
+      //         Object.assign(newData[j], {
+      //           "isGood": res.data[j].comment_goods.includes(app.globalData.my_openid)
+      //           //每一条评论点赞数组里是否含有当前用户的id
+      //         });
+      //         newData[j].comment_date = formatTime.formatTime(newData[j].comment_date);
+      //       }
 
-            //渲染commentFeed
-            var commentfeed = "feed[" + i + "].commentFeed";
-            this.setData({
-              [commentfeed]: newData
-            })
-          }).catch(res => {
-            console.log("加载-评论出错");
-            wx.showToast({
-              title: '网络出错o(TヘTo)',
-              icon: 'none',
-              duration: 2000
-            })
-          })
-        }
-      })
-
+      //       //渲染commentFeed
+      //       var commentfeed = "feed[" + i + "].commentFeed";
+      //       this.setData({
+      //         [commentfeed]: newData
+      //       })
+      //     }).catch(res => {
+      //       console.log("加载-评论出错");
+      //       wx.showToast({
+      //         title: '网络出错o(TヘTo)',
+      //         icon: 'none',
+      //         duration: 2000
+      //       })
+      //     })
+      //   }
+      //  })
   },
 
   // 获取滚动条当前位置
